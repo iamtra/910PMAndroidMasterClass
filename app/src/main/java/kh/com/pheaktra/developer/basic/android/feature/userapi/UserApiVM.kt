@@ -5,9 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kh.com.pheaktra.developer.basic.android.model.BaseUiState
 import kh.com.pheaktra.developer.basic.android.model.request.UserApiRequest
+import kh.com.pheaktra.developer.basic.android.model.request.UserUpdateRequest
 import kh.com.pheaktra.developer.basic.android.model.response.CreateUserResponse
 import kh.com.pheaktra.developer.basic.android.model.response.DeleteUserResponse
 import kh.com.pheaktra.developer.basic.android.model.response.UserApiResponse
+import kh.com.pheaktra.developer.basic.android.model.response.UserUpdateResponse
 import kh.com.pheaktra.developer.basic.android.network.RetrofitClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -26,8 +28,13 @@ class UserApiVM : ViewModel() {
         MutableStateFlow(null)
     val deleteUserState = _deleteUserUiState.asStateFlow()
 
+    private val _updateUserUiState: MutableStateFlow<BaseUiState<UserUpdateResponse>?> =
+        MutableStateFlow(null)
+    val updateUserState = _updateUserUiState.asStateFlow()
 
-
+    /**
+     * Get user list from api
+     */
     fun getUserList() {
         viewModelScope.launch {
             _userListUiState.value = BaseUiState.Loading
@@ -45,6 +52,9 @@ class UserApiVM : ViewModel() {
         }
     }
 
+    /**
+     * Create user from api
+     */
     fun createUser(name: String, email: String) {
         viewModelScope.launch {
             try {
@@ -70,6 +80,10 @@ class UserApiVM : ViewModel() {
         }
     }
 
+    /**
+     * Delete user from api
+     * @param id Int
+     */
     fun deleteUser(id: Int) {
         viewModelScope.launch {
             _deleteUserUiState.value = BaseUiState.Loading
@@ -84,6 +98,29 @@ class UserApiVM : ViewModel() {
             } catch (e: Exception) {
                 e.printStackTrace()
                 _deleteUserUiState.value = BaseUiState.ErrorWithException(e.message ?: "Unknown error")
+            }
+        }
+    }
+
+    /**
+     * Update user from api
+     * @param id Int
+     * @param body UserUpdateRequest
+     */
+    fun updateUser(id: Int, body: UserUpdateRequest) {
+        viewModelScope.launch {
+            _updateUserUiState.value = BaseUiState.Loading
+            try {
+                val response = RetrofitClient.instance.updateUser(id, body)
+
+                if (response.isSuccessful) {
+                    _updateUserUiState.value = BaseUiState.Success(response.body()!!)
+                } else {
+                    _updateUserUiState.value = BaseUiState.Error(response.message())
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                _updateUserUiState.value = BaseUiState.ErrorWithException(e.message ?: "Unknown error")
             }
         }
     }

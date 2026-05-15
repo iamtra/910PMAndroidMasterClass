@@ -58,6 +58,7 @@ import kh.com.pheaktra.developer.basic.android.R
 import kh.com.pheaktra.developer.basic.android.feature.bottomsheet.BottomSheetSelectOption
 import kh.com.pheaktra.developer.basic.android.model.BaseUiState
 import kh.com.pheaktra.developer.basic.android.model.UserModel
+import kh.com.pheaktra.developer.basic.android.model.request.UserUpdateRequest
 import kh.com.pheaktra.developer.basic.android.model.response.UserApiResponse
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
@@ -73,6 +74,7 @@ fun ScreenUserApi(
     val userUiState by userApiVM.userListUiState.collectAsStateWithLifecycle()
     val createUserUiState by userApiVM.createUserState.collectAsStateWithLifecycle()
     val deleteUserState by userApiVM.deleteUserState.collectAsStateWithLifecycle()
+    val userUpdateState by userApiVM.updateUserState.collectAsStateWithLifecycle()
 
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -80,6 +82,8 @@ fun ScreenUserApi(
     var emailError by remember { mutableStateOf(false) }
     var isShowCreateSheet by remember { mutableStateOf(false) }
     var expendIndex by remember { mutableIntStateOf(-1) }
+    var isEdit by remember { mutableStateOf(false) }
+    var id by remember { mutableIntStateOf(0) }
 
     fun isValidEmail(email: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
@@ -96,13 +100,26 @@ fun ScreenUserApi(
         userApiVM.deleteUser(id)
     }
 
+    fun onUpdate() {
+        val body = UserUpdateRequest(
+            name = name,
+            email = email
+        )
+        userApiVM.updateUser(
+            id = id,
+            body = body
+        )
+    }
+
     fun onToastMessage(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
     fun onEdit(user: UserApiResponse) {
+        id = user.id
         name = user.name
         email = user.email
+        isEdit = true
         isShowCreateSheet = true
     }
 
@@ -188,6 +205,31 @@ fun ScreenUserApi(
         }
     }
 
+    LaunchedEffect(userUpdateState) {
+        when (val state = userUpdateState) {
+            is BaseUiState.Loading -> LoadingUtil.showLoading()
+
+            is BaseUiState.Success -> {
+                userApiVM.getUserList()
+                LoadingUtil.hideLoading()
+            }
+
+            is BaseUiState.Error -> {
+                LoadingUtil.hideLoading()
+                onToastMessage(state.message)
+            }
+
+            is BaseUiState.ErrorWithException -> {
+                LoadingUtil.hideLoading()
+                onToastMessage(state.message)
+            }
+
+            else -> {
+                LoadingUtil.hideLoading()
+            }
+        }
+    }
+
     DisposableEffect(Unit) {
 
         onDispose {
@@ -207,7 +249,7 @@ fun ScreenUserApi(
                         }
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.ic_menu_24),
+                            painter = painterResource(R.drawable.ic_arrow_back),
                             contentDescription = null
                         )
                     }
@@ -319,6 +361,7 @@ fun ScreenUserApi(
         if (isShowCreateSheet) {
             ModalBottomSheet(
                 onDismissRequest = {
+                    isEdit = false
                     isShowCreateSheet = false
                     name = ""
                     email = ""
@@ -375,11 +418,16 @@ fun ScreenUserApi(
                             .height(48.dp),
                         onClick = {
                             isShowCreateSheet = false
+                            if (isEdit) {
+                                onUpdate()
+                            }
                             createUser()
                         },
                         enabled = !nameError && !emailError
                     ) {
-                        Text("Create User")
+                        Text(
+                            text = if (isEdit) "Update" else "Create User"
+                        )
                     }
                 }
             }
