@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">910Basic Android</string>
+
+    <!--  Component  -->
+    <string name="lbl_company_name">Pheaktra Developer</string>
+    <string name="lbl_card">Card</string>
+</resources>
