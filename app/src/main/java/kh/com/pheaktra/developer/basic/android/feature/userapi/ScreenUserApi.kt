@@ -48,6 +48,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -83,7 +84,7 @@ fun ScreenUserApi(
     var isShowCreateSheet by remember { mutableStateOf(false) }
     var expendIndex by remember { mutableIntStateOf(-1) }
     var isEdit by remember { mutableStateOf(false) }
-    var id by remember { mutableIntStateOf(0) }
+    var id by remember { mutableStateOf("") }
 
     fun isValidEmail(email: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
@@ -96,7 +97,7 @@ fun ScreenUserApi(
         )
     }
 
-    fun onDelete(id: Int) {
+    fun onDelete(id: String) {
         userApiVM.deleteUser(id)
     }
 
@@ -296,10 +297,10 @@ fun ScreenUserApi(
                     verticalArrangement = Arrangement.Top,
                     horizontalAlignment = Alignment.Start
                 ) {
-                    items(state.data.size) { index ->
-                        if (state.data.isNotEmpty()) {
+                    items(state.data.data.size) { index ->
+                        if (state.data.data.isNotEmpty()) {
                             UserItem(
-                                item = state.data[index],
+                                item = state.data.data[index],
                                 onClick = { user ->
                                     onEdit(user)
                                 }
@@ -328,7 +329,7 @@ fun ScreenUserApi(
                                                     )
                                                 },
                                                 onClick = {
-                                                    onDelete(state.data[index].id)
+                                                    onDelete(state.data.data[index].id)
                                                 }
                                             )
                                             DropdownMenuItem(
@@ -339,7 +340,7 @@ fun ScreenUserApi(
                                                     )
                                                 },
                                                 onClick = {
-                                                    onEdit(state.data[index])
+                                                    onEdit(state.data.data[index])
                                                 }
                                             )
                                         }
@@ -420,8 +421,9 @@ fun ScreenUserApi(
                             isShowCreateSheet = false
                             if (isEdit) {
                                 onUpdate()
+                            } else {
+                                createUser()
                             }
-                            createUser()
                         },
                         enabled = !nameError && !emailError
                     ) {
@@ -442,6 +444,22 @@ fun UserItem(
     trailingIcon: @Composable () -> Unit = {}
 ) {
     val profileCharacter = item.name.first().uppercase()
+    val profileColors = listOf(
+        Color(0xFFE57373),
+        Color(0xFF64B5F6),
+        Color(0xFF81C784),
+        Color(0xFFFFB74D),
+        Color(0xFFBA68C8),
+        Color(0xFF4DB6AC),
+        Color(0xFFA1887F),
+        Color(0xFF90A4AE),
+    )
+
+    // Generate color index based on first character
+    val backgroundColor = profileColors[
+        profileCharacter.first().code % profileColors.size
+    ]
+
     Row(
         modifier = Modifier
             .height(64.dp)
@@ -458,7 +476,7 @@ fun UserItem(
             modifier = Modifier
                 .clip(CircleShape)
                 .size(56.dp)
-                .background(MaterialTheme.colorScheme.primaryContainer),
+                .background(backgroundColor),
             contentAlignment = Alignment.Center
         ) {
             Text(profileCharacter)

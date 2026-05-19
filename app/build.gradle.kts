@@ -70,6 +70,8 @@ dependencies {
 
     implementation(libs.kotlinx.serialization)
 //    implementation(libs.retrofit2.kotlinx.serialization.converter)
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
 
 
     testImplementation(libs.junit)

@@ -8,6 +8,7 @@ import kh.com.pheaktra.developer.basic.android.model.request.UserApiRequest
 import kh.com.pheaktra.developer.basic.android.model.request.UserUpdateRequest
 import kh.com.pheaktra.developer.basic.android.model.response.CreateUserResponse
 import kh.com.pheaktra.developer.basic.android.model.response.DeleteUserResponse
+import kh.com.pheaktra.developer.basic.android.model.response.GetListUserResponse
 import kh.com.pheaktra.developer.basic.android.model.response.UserApiResponse
 import kh.com.pheaktra.developer.basic.android.model.response.UserUpdateResponse
 import kh.com.pheaktra.developer.basic.android.network.RetrofitClient
@@ -16,8 +17,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class UserApiVM : ViewModel() {
-    private val _userListUiState: MutableStateFlow<BaseUiState<List<UserApiResponse>>?> =
-        MutableStateFlow(null)
+    private val _userListUiState: MutableStateFlow<BaseUiState<GetListUserResponse>?> =
+        MutableStateFlow(BaseUiState.None)
     val userListUiState = _userListUiState.asStateFlow()
 
     private val _createUserUiState: MutableStateFlow<BaseUiState<CreateUserResponse>?> =
@@ -41,7 +42,7 @@ class UserApiVM : ViewModel() {
             try {
                 val response = RetrofitClient.instance.getUsers()
                 if (response.isSuccessful) {
-                    _userListUiState.value = BaseUiState.Success(response.body() ?: emptyList())
+                    _userListUiState.value = BaseUiState.Success(response.body()!!)
                 } else {
                     _userListUiState.value = BaseUiState.Error(response.message())
                 }
@@ -84,7 +85,7 @@ class UserApiVM : ViewModel() {
      * Delete user from api
      * @param id Int
      */
-    fun deleteUser(id: Int) {
+    fun deleteUser(id: String) {
         viewModelScope.launch {
             _deleteUserUiState.value = BaseUiState.Loading
 
@@ -107,7 +108,7 @@ class UserApiVM : ViewModel() {
      * @param id Int
      * @param body UserUpdateRequest
      */
-    fun updateUser(id: Int, body: UserUpdateRequest) {
+    fun updateUser(id: String, body: UserUpdateRequest) {
         viewModelScope.launch {
             _updateUserUiState.value = BaseUiState.Loading
             try {
@@ -129,6 +130,7 @@ class UserApiVM : ViewModel() {
         _userListUiState.value = null
         _createUserUiState.value = null
         _deleteUserUiState.value = null
+        _updateUserUiState.value = null
     }
 }
 
@@ -140,4 +142,12 @@ class UserApiVM : ViewModel() {
  * - PATCH
  * - DELETE
  * - GET BY ID
+ */
+
+
+/**
+ * Hilt dependency injection
+ * Request to delay
+ * May 19, 2026, move next week 25
+ *  - Restructure folder use API.
  */
