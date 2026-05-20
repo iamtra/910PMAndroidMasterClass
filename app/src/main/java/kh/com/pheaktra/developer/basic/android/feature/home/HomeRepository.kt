@@ -1,6 +1,8 @@
 package kh.com.pheaktra.developer.basic.android.feature.home.home
 
 import kh.com.pheaktra.developer.basic.android.model.ComponentModel
+import kh.com.pheaktra.developer.basic.android.navigation.AccessPhotoMultipleScreen
+import kh.com.pheaktra.developer.basic.android.navigation.AccessPhotoScreen
 import kh.com.pheaktra.developer.basic.android.navigation.BadgeScreen
 import kh.com.pheaktra.developer.basic.android.navigation.BottomSheetScreen
 import kh.com.pheaktra.developer.basic.android.navigation.CardsScreen
@@ -238,6 +240,20 @@ class HomeRepository {
             description = "basic api request feature before becoming a msater",
             route = UserApiScreen,
             iconUrl = "https://img.icons8.com/color/96/bell.png"
+        ),
+        ComponentModel(
+            id = 30,
+            title = "Access Photo",
+            description = "This is Access Photo Feature",
+            route = AccessPhotoScreen,
+            iconUrl = "https://img.icons8.com/color/96/list.png"
+        ),
+        ComponentModel(
+            id = 31,
+            title = "Select Multiple Photo",
+            description = "This is Access Photo Feature",
+            route = AccessPhotoMultipleScreen,
+            iconUrl = "https://img.icons8.com/color/96/list.png"
         ),
     )
 

@@ -37,5 +37,7 @@ data object MultiChoiceSegmentedButtonRowScreen
 
 data object NotificationPermissionScreen
 data object UserApiScreen
+data object AccessPhotoScreen
+data object AccessPhotoMultipleScreen
 @Serializable
 data class UserProfile(val id: Int)

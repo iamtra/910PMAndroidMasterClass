@@ -8,6 +8,8 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
+import kh.com.pheaktra.developer.basic.android.feature.accessphoto.ScreenAccessMultiplePhoto
+import kh.com.pheaktra.developer.basic.android.feature.accessphoto.ScreenAccessPhoto
 import kh.com.pheaktra.developer.basic.android.feature.badge.badge.ScreenBadge
 import kh.com.pheaktra.developer.basic.android.feature.bottomsheet.ScreenBottomSheet
 import kh.com.pheaktra.developer.basic.android.feature.cards.ScreenCards
@@ -121,6 +123,14 @@ fun Navigation() {
                             backStack.removeLastOrNull()
                         }
                     )
+                }
+
+                is AccessPhotoScreen -> NavEntry(key) {
+                    ScreenAccessPhoto()
+                }
+
+                is AccessPhotoMultipleScreen -> NavEntry(key) {
+                    ScreenAccessMultiplePhoto()
                 }
 
                 else -> NavEntry(Unit) { Text("Unknown route") }
