@@ -68,10 +68,12 @@ dependencies {
     implementation(libs.retrofit.converter.gson)
     implementation(libs.logging.interceptor)
 
-    implementation(libs.kotlinx.serialization)
+    implementation(libs.org.jetbrains.kotlinx.serialization.json)
 //    implementation(libs.retrofit2.kotlinx.serialization.converter)
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
-    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
+    implementation(libs.jakewharton.retrofit2.kotlinx.serialization.converter)
+
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.ui)
 
 
     testImplementation(libs.junit)

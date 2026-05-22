@@ -39,5 +39,11 @@ data object NotificationPermissionScreen
 data object UserApiScreen
 data object AccessPhotoScreen
 data object AccessPhotoMultipleScreen
+data object SelectSinglePhots
+data object SelectMultiplePhots
+data object SelectSingleVideos
+data object SelectMultipleVideos
+data object SelectPhotoAndVideos
+
 @Serializable
 data class UserProfile(val id: Int)

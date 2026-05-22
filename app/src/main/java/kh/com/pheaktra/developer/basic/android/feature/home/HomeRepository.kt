@@ -21,6 +21,11 @@ import kh.com.pheaktra.developer.basic.android.navigation.NavigationDrawerScreen
 import kh.com.pheaktra.developer.basic.android.navigation.NotificationPermissionScreen
 import kh.com.pheaktra.developer.basic.android.navigation.ProgressScreen
 import kh.com.pheaktra.developer.basic.android.navigation.RadioButtonScreen
+import kh.com.pheaktra.developer.basic.android.navigation.SelectMultiplePhots
+import kh.com.pheaktra.developer.basic.android.navigation.SelectMultipleVideos
+import kh.com.pheaktra.developer.basic.android.navigation.SelectPhotoAndVideos
+import kh.com.pheaktra.developer.basic.android.navigation.SelectSinglePhots
+import kh.com.pheaktra.developer.basic.android.navigation.SelectSingleVideos
 import kh.com.pheaktra.developer.basic.android.navigation.SingleChoiceSegmentedButtonScreen
 import kh.com.pheaktra.developer.basic.android.navigation.SliderScreen
 import kh.com.pheaktra.developer.basic.android.navigation.SnackbarScreen
@@ -243,16 +248,52 @@ class HomeRepository {
         ),
         ComponentModel(
             id = 30,
-            title = "Access Photo",
+            title = "Old Access Photo",
             description = "This is Access Photo Feature",
             route = AccessPhotoScreen,
             iconUrl = "https://img.icons8.com/color/96/list.png"
         ),
         ComponentModel(
             id = 31,
-            title = "Select Multiple Photo",
+            title = "Old Select Multiple Photo",
             description = "This is Access Photo Feature",
             route = AccessPhotoMultipleScreen,
+            iconUrl = "https://img.icons8.com/color/96/list.png"
+        ),
+        ComponentModel(
+            id = 32,
+            title = "Select Single Photo",
+            description = "This is Access Photo Feature",
+            route = SelectSinglePhots,
+            iconUrl = "https://img.icons8.com/color/96/list.png"
+        ),
+        ComponentModel(
+            id = 33,
+            title = "Select Multiple Photos",
+            description = "This is Access Photo Feature",
+            route = SelectMultiplePhots,
+            iconUrl = "https://img.icons8.com/color/96/list.png"
+        ),
+        ComponentModel(
+            id = 34,
+            title = "Select Single Video",
+            description = "This is Access Photo Feature",
+            route = SelectSingleVideos,
+            iconUrl = "https://img.icons8.com/color/96/list.png"
+        ),
+        ComponentModel(
+            id = 35,
+            title = "Select Multiple Videos",
+            description = "This is Access Photo Feature",
+            route = SelectMultipleVideos,
+            iconUrl = "https://img.icons8.com/color/96/list.png"
+        ),
+
+        ComponentModel(
+            id = 36,
+            title = "Select Photo And Videos",
+            description = "This is Access Photo Feature",
+            route = SelectPhotoAndVideos,
             iconUrl = "https://img.icons8.com/color/96/list.png"
         ),
     )

@@ -31,6 +31,11 @@ import kh.com.pheaktra.developer.basic.android.feature.loading_progress.ScreenSc
 import kh.com.pheaktra.developer.basic.android.feature.notifcation.notifcation.ScreenNotificationPermission
 import kh.com.pheaktra.developer.basic.android.feature.profile.profile.ScreenProfile
 import kh.com.pheaktra.developer.basic.android.feature.segmentedbutton.ScreenSingleChoiceSegmentedButton
+import kh.com.pheaktra.developer.basic.android.feature.selectmultiplephotos.SelectMultiplePhotos
+import kh.com.pheaktra.developer.basic.android.feature.selectmultiplevidoes.SelectMultipleVideos
+import kh.com.pheaktra.developer.basic.android.feature.selectphotoandvideos.ScreenSelectPhotoAndVideo
+import kh.com.pheaktra.developer.basic.android.feature.selectsinglephoto.SelectSinglePhoto
+import kh.com.pheaktra.developer.basic.android.feature.selectsinglevideos.SelectSingleVideo
 import kh.com.pheaktra.developer.basic.android.feature.slider.ScreenSlider
 import kh.com.pheaktra.developer.basic.android.feature.snackbar.ScreenSnackbar
 import kh.com.pheaktra.developer.basic.android.feature.switch.ScreenSwitch
@@ -41,7 +46,6 @@ import kh.com.pheaktra.developer.basic.android.feature.tooltips.ScreenToolTips
 import kh.com.pheaktra.developer.basic.android.feature.toolbar.ScreenToolbar
 import kh.com.pheaktra.developer.basic.android.feature.topappbar.ScreenTopAppBar
 import kh.com.pheaktra.developer.basic.android.feature.userapi.ScreenUserApi
-import kotlinx.serialization.Serializable
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
@@ -60,9 +64,10 @@ fun Navigation() {
             when (key) {
                 is UserApiScreen -> NavEntry(key) {
                     ScreenUserApi {
-                      onBack()
+                        onBack()
                     }
                 }
+
                 is HomeScreen -> NavEntry(key) {
                     ScreenHome(
                         onClickItem = { key ->
@@ -116,6 +121,7 @@ fun Navigation() {
                         }
                     )
                 }
+
                 is UserProfile -> NavEntry(key) {
                     ScreenProfile(
                         id = key.id,
@@ -131,6 +137,36 @@ fun Navigation() {
 
                 is AccessPhotoMultipleScreen -> NavEntry(key) {
                     ScreenAccessMultiplePhoto()
+                }
+
+                is SelectSinglePhots -> NavEntry(key) {
+                    SelectSinglePhoto {
+                        onBack()
+                    }
+                }
+
+                is SelectMultiplePhots -> NavEntry(key) {
+                    SelectMultiplePhotos {
+                        onBack()
+                    }
+                }
+
+                is SelectSingleVideos -> NavEntry(key) {
+                    SelectSingleVideo {
+                        onBack()
+                    }
+                }
+
+                is SelectMultipleVideos -> NavEntry(key) {
+                    SelectMultipleVideos {
+                        onBack()
+                    }
+                }
+
+                is SelectPhotoAndVideos -> NavEntry(key) {
+                    ScreenSelectPhotoAndVideo {
+                        onBack()
+                    }
                 }
 
                 else -> NavEntry(Unit) { Text("Unknown route") }

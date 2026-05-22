@@ -28,8 +28,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import kh.com.pheaktra.developer.basic.android.R
+import kh.com.pheaktra.developer.basic.android.feature.home.HomeVM
 import kh.com.pheaktra.developer.basic.android.model.BaseUiState
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
@@ -37,11 +39,18 @@ import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenHome(
-    homeVM: HomeVM = HomeVM(),
+    homeVM: HomeVM = viewModel(),
     onClickItem: (Any) -> Unit,
     onClickProfile: (id: Int) -> Unit
 ) {
     val componentList by homeVM.componentList.collectAsStateWithLifecycle()
+
+
+    LaunchedEffect(Unit) {
+        if (componentList !is BaseUiState.Success) {
+            homeVM.getComponentList()
+        }
+    }
 
     LaunchedEffect(componentList) {
         when (val state = componentList) {
