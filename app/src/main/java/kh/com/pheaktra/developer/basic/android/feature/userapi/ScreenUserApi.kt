@@ -61,6 +61,7 @@ import kh.com.pheaktra.developer.basic.android.model.BaseUiState
 import kh.com.pheaktra.developer.basic.android.model.UserModel
 import kh.com.pheaktra.developer.basic.android.model.request.UserUpdateRequest
 import kh.com.pheaktra.developer.basic.android.model.response.UserApiResponse
+import kh.com.pheaktra.developer.basic.android.model.response.displayDateTime
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
 
@@ -490,8 +491,7 @@ fun UserItem(
                     .height(8.dp)
             )
             Text(item.email)
-
-
+            Text(item.displayDateTime())
         }
         Spacer(modifier = Modifier.weight(1f))
         trailingIcon()

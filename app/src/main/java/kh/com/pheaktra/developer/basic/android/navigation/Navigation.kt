@@ -12,6 +12,7 @@ import kh.com.pheaktra.developer.basic.android.feature.accessphoto.ScreenAccessM
 import kh.com.pheaktra.developer.basic.android.feature.accessphoto.ScreenAccessPhoto
 import kh.com.pheaktra.developer.basic.android.feature.badge.badge.ScreenBadge
 import kh.com.pheaktra.developer.basic.android.feature.bottomsheet.ScreenBottomSheet
+import kh.com.pheaktra.developer.basic.android.feature.camera.ScreenCameraLauncher
 import kh.com.pheaktra.developer.basic.android.feature.cards.ScreenCards
 import kh.com.pheaktra.developer.basic.android.feature.checkbox.ScreenCheckBox
 import kh.com.pheaktra.developer.basic.android.feature.chips.ScreenChips
@@ -168,6 +169,13 @@ fun Navigation() {
                         onBack()
                     }
                 }
+
+                is CameraLauncher -> NavEntry(key) {
+                    ScreenCameraLauncher {
+                        onBack()
+                    }
+                }
+
 
                 else -> NavEntry(Unit) { Text("Unknown route") }
             }

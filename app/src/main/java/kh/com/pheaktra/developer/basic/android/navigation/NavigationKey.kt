@@ -44,6 +44,7 @@ data object SelectMultiplePhots
 data object SelectSingleVideos
 data object SelectMultipleVideos
 data object SelectPhotoAndVideos
+data object CameraLauncher
 
 @Serializable
 data class UserProfile(val id: Int)

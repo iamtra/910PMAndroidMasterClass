@@ -5,6 +5,7 @@ import kh.com.pheaktra.developer.basic.android.navigation.AccessPhotoMultipleScr
 import kh.com.pheaktra.developer.basic.android.navigation.AccessPhotoScreen
 import kh.com.pheaktra.developer.basic.android.navigation.BadgeScreen
 import kh.com.pheaktra.developer.basic.android.navigation.BottomSheetScreen
+import kh.com.pheaktra.developer.basic.android.navigation.CameraLauncher
 import kh.com.pheaktra.developer.basic.android.navigation.CardsScreen
 import kh.com.pheaktra.developer.basic.android.navigation.CheckBoxScreen
 import kh.com.pheaktra.developer.basic.android.navigation.ChipsScreen
@@ -295,6 +296,14 @@ class HomeRepository {
             description = "This is Access Photo Feature",
             route = SelectPhotoAndVideos,
             iconUrl = "https://img.icons8.com/color/96/list.png"
+        ),
+
+        ComponentModel(
+            id = 37,
+            title = "Camera",
+            description = "Feature open camera and capture photo",
+            route = CameraLauncher,
+            iconUrl = "https://img.icons8.com/color/96/camera.png"
         ),
     )
 
