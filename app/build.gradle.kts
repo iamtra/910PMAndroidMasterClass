@@ -9,9 +9,7 @@ plugins {
 
 android {
     namespace = "kh.com.pheaktra.developer.basic.android"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "kh.com.pheaktra.developer.basic.android"
@@ -37,7 +35,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
