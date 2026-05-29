@@ -64,8 +64,7 @@ fun SelectSinglePhoto(
         pickMedia.launch(visualImage)
     }
 
-
-    Scaffold(
+        Scaffold(
         modifier = Modifier.navigationBarsPadding(),
         topBar = {
             TopAppBar(

@@ -6,13 +6,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
+import dagger.hilt.android.AndroidEntryPoint
 import kh.com.pheaktra.developer.basic.android.navigation.Navigation
+import kh.com.pheaktra.developer.basic.android.network.ApiService
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kh.com.pheaktra.developer.basic.android.util.LoadingContent
 import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
 import java.time.LocalDateTime
 import java.util.Date
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val currentDateTime = LocalDateTime.now()
 
@@ -90,5 +93,13 @@ class MainActivity : ComponentActivity() {
  * - Check Linkin, Workina, check out more
  * -
  */
+
+interface BillPaymentRepository {
+    suspend fun getConsumerInfo(id: String): String
+
+    suspend fun getTopUpInfo(id: String): String
+
+    suspend fun getBillPaymentInfo(id: String): String
+}
 
 

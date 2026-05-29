@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.android.model
+package kh.com.pheaktra.developer.basic.android.domain.model.base
 
 data class ComponentModel(
     val id: Int,

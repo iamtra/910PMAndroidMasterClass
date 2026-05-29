@@ -1,7 +1,7 @@
 package kh.com.pheaktra.developer.basic.android.storage
 
 import kh.com.pheaktra.developer.basic.android.common.AccountType
-import kh.com.pheaktra.developer.basic.android.model.AccountModel
+import kh.com.pheaktra.developer.basic.android.domain.model.base.AccountModel
 
 val accountList = arrayOf(
     // 1️⃣ Primary Saving Account

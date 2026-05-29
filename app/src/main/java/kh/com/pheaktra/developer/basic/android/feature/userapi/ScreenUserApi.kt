@@ -1,7 +1,5 @@
 package kh.com.pheaktra.developer.basic.android.feature.userapi
 
-import android.graphics.pdf.models.ListItem
-import android.widget.Space
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -10,7 +8,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -18,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -32,15 +28,12 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.internal.isLiveLiteralsEnabled
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -56,12 +49,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kh.com.pheaktra.developer.basic.android.R
-import kh.com.pheaktra.developer.basic.android.feature.bottomsheet.BottomSheetSelectOption
-import kh.com.pheaktra.developer.basic.android.model.BaseUiState
-import kh.com.pheaktra.developer.basic.android.model.UserModel
-import kh.com.pheaktra.developer.basic.android.model.request.UserUpdateRequest
-import kh.com.pheaktra.developer.basic.android.model.response.UserApiResponse
-import kh.com.pheaktra.developer.basic.android.model.response.displayDateTime
+import kh.com.pheaktra.developer.basic.android.domain.model.base.BaseUiState
+import kh.com.pheaktra.developer.basic.android.domain.model.request.UserUpdateRequest
+import kh.com.pheaktra.developer.basic.android.domain.model.response.UserApiResponse
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
 
@@ -491,7 +481,6 @@ fun UserItem(
                     .height(8.dp)
             )
             Text(item.email)
-            Text(item.displayDateTime())
         }
         Spacer(modifier = Modifier.weight(1f))
         trailingIcon()

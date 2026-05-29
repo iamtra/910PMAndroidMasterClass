@@ -3,8 +3,8 @@ package kh.com.pheaktra.developer.basic.android.feature.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kh.com.pheaktra.developer.basic.android.feature.home.home.HomeRepository
-import kh.com.pheaktra.developer.basic.android.model.BaseUiState
-import kh.com.pheaktra.developer.basic.android.model.ComponentModel
+import kh.com.pheaktra.developer.basic.android.domain.model.base.BaseUiState
+import kh.com.pheaktra.developer.basic.android.domain.model.base.ComponentModel
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

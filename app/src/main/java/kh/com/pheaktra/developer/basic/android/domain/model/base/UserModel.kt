@@ -1,6 +1,4 @@
-package kh.com.pheaktra.developer.basic.android.model
-
-import androidx.annotation.OpenForTesting
+package kh.com.pheaktra.developer.basic.android.domain.model.base
 
 data class UserModel(
     val id: Int,

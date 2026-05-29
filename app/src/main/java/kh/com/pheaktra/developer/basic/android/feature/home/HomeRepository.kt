@@ -1,6 +1,6 @@
 package kh.com.pheaktra.developer.basic.android.feature.home.home
 
-import kh.com.pheaktra.developer.basic.android.model.ComponentModel
+import kh.com.pheaktra.developer.basic.android.domain.model.base.ComponentModel
 import kh.com.pheaktra.developer.basic.android.navigation.AccessPhotoMultipleScreen
 import kh.com.pheaktra.developer.basic.android.navigation.AccessPhotoScreen
 import kh.com.pheaktra.developer.basic.android.navigation.BadgeScreen

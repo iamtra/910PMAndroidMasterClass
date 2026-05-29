@@ -1,22 +1,26 @@
 package kh.com.pheaktra.developer.basic.android.feature.userapi
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kh.com.pheaktra.developer.basic.android.model.BaseUiState
-import kh.com.pheaktra.developer.basic.android.model.request.UserApiRequest
-import kh.com.pheaktra.developer.basic.android.model.request.UserUpdateRequest
-import kh.com.pheaktra.developer.basic.android.model.response.CreateUserResponse
-import kh.com.pheaktra.developer.basic.android.model.response.DeleteUserResponse
-import kh.com.pheaktra.developer.basic.android.model.response.GetListUserResponse
-import kh.com.pheaktra.developer.basic.android.model.response.UserApiResponse
-import kh.com.pheaktra.developer.basic.android.model.response.UserUpdateResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
+import jakarta.inject.Inject
+import kh.com.pheaktra.developer.basic.android.domain.model.base.BaseUiState
+import kh.com.pheaktra.developer.basic.android.domain.model.request.UserApiRequest
+import kh.com.pheaktra.developer.basic.android.domain.model.request.UserUpdateRequest
+import kh.com.pheaktra.developer.basic.android.domain.model.response.CreateUserResponse
+import kh.com.pheaktra.developer.basic.android.domain.model.response.DeleteUserResponse
+import kh.com.pheaktra.developer.basic.android.domain.model.response.GetListUserResponse
+import kh.com.pheaktra.developer.basic.android.domain.model.response.UserUpdateResponse
+import kh.com.pheaktra.developer.basic.android.domain.usecase.GetUserListUseCase
 import kh.com.pheaktra.developer.basic.android.network.RetrofitClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class UserApiVM : ViewModel() {
+@HiltViewModel
+class UserApiVM @Inject constructor(
+    private val getUserListUseCase: GetUserListUseCase
+) : ViewModel() {
     private val _userListUiState: MutableStateFlow<BaseUiState<GetListUserResponse>?> =
         MutableStateFlow(BaseUiState.None)
     val userListUiState = _userListUiState.asStateFlow()
@@ -38,17 +42,8 @@ class UserApiVM : ViewModel() {
      */
     fun getUserList() {
         viewModelScope.launch {
-            _userListUiState.value = BaseUiState.Loading
-            try {
-                val response = RetrofitClient.instance.getUsers()
-                if (response.isSuccessful) {
-                    _userListUiState.value = BaseUiState.Success(response.body()!!)
-                } else {
-                    _userListUiState.value = BaseUiState.Error(response.message())
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                _userListUiState.value = BaseUiState.Error(e.message ?: "Unknown error")
+            getUserListUseCase().collect {
+                _userListUiState.emit(it)
             }
         }
     }
@@ -62,14 +57,14 @@ class UserApiVM : ViewModel() {
                 _createUserUiState.emit(BaseUiState.Loading)
                 val body = UserApiRequest(name, email)
                 val response = RetrofitClient.instance.createUser(body)
-                if (response.isSuccessful) {
-                    val body = response.body()
-                    if (body?.data != null) {
-                        _createUserUiState.emit(BaseUiState.Success(body))
-                    }
-                } else {
-                    _createUserUiState.emit(BaseUiState.Error(response.message()))
-                }
+//                if (response.isSuccessful) {
+//                    val body = response.body()
+//                    if (body?.data != null) {
+//                        _createUserUiState.emit(BaseUiState.Success(body))
+//                    }
+//                } else {
+//                    _createUserUiState.emit(BaseUiState.Error(response.message()))
+//                }
             } catch (e: Exception) {
                 e.printStackTrace()
                 _createUserUiState.emit(
@@ -98,7 +93,8 @@ class UserApiVM : ViewModel() {
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                _deleteUserUiState.value = BaseUiState.ErrorWithException(e.message ?: "Unknown error")
+                _deleteUserUiState.value =
+                    BaseUiState.ErrorWithException(e.message ?: "Unknown error")
             }
         }
     }
@@ -121,7 +117,8 @@ class UserApiVM : ViewModel() {
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                _updateUserUiState.value = BaseUiState.ErrorWithException(e.message ?: "Unknown error")
+                _updateUserUiState.value =
+                    BaseUiState.ErrorWithException(e.message ?: "Unknown error")
             }
         }
     }

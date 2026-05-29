@@ -24,7 +24,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,8 +36,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kh.com.pheaktra.developer.basic.android.R
-import kh.com.pheaktra.developer.basic.android.model.TooltipViewModel
-import kh.com.pheaktra.developer.basic.android.model.ReceiverAccountModel
+import kh.com.pheaktra.developer.basic.android.domain.model.base.TooltipViewModel
+import kh.com.pheaktra.developer.basic.android.domain.model.base.ReceiverAccountModel
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

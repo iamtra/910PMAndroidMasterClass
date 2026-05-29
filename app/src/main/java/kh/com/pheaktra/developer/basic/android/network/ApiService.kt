@@ -1,14 +1,18 @@
 package kh.com.pheaktra.developer.basic.android.network
 
-import kh.com.pheaktra.developer.basic.android.model.request.UserApiRequest
-import kh.com.pheaktra.developer.basic.android.model.request.UserUpdateRequest
-import kh.com.pheaktra.developer.basic.android.model.response.CreateUserResponse
-import kh.com.pheaktra.developer.basic.android.model.response.DeleteUserResponse
-import kh.com.pheaktra.developer.basic.android.model.response.GetListUserResponse
-import kh.com.pheaktra.developer.basic.android.model.response.UserApiResponse
-import kh.com.pheaktra.developer.basic.android.model.response.UserUpdateResponse
+import kh.com.pheaktra.developer.basic.android.domain.model.request.UserApiRequest
+import kh.com.pheaktra.developer.basic.android.domain.model.request.UserUpdateRequest
+import kh.com.pheaktra.developer.basic.android.domain.model.response.CreateUserResponse
+import kh.com.pheaktra.developer.basic.android.domain.model.response.DeleteUserResponse
+import kh.com.pheaktra.developer.basic.android.domain.model.response.GetListUserResponse
+import kh.com.pheaktra.developer.basic.android.domain.model.response.UserUpdateResponse
 import retrofit2.Response
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface ApiService {
     @GET("users")

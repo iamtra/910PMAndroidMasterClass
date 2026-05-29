@@ -38,7 +38,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kh.com.pheaktra.developer.basic.android.R
-import kh.com.pheaktra.developer.basic.android.model.foodList
+import kh.com.pheaktra.developer.basic.android.domain.model.base.foodList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
