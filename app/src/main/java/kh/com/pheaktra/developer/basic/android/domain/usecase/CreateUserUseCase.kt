@@ -1,20 +1,22 @@
 package kh.com.pheaktra.developer.basic.android.domain.usecase
 
 import kh.com.pheaktra.developer.basic.android.domain.model.base.BaseUiState
-import kh.com.pheaktra.developer.basic.android.domain.model.response.GetListUserResponse
+import kh.com.pheaktra.developer.basic.android.domain.model.base.BaseUseCase
+import kh.com.pheaktra.developer.basic.android.domain.model.request.UserApiRequest
+import kh.com.pheaktra.developer.basic.android.domain.model.response.CreateUserResponse
 import kh.com.pheaktra.developer.basic.android.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class GetUserListUseCase @Inject constructor(
+class CreateUserUseCase @Inject constructor(
     private val userRepository: UserRepository
-) {
-    operator fun invoke(): Flow<BaseUiState<GetListUserResponse>> {
+) : BaseUseCase<UserApiRequest, Flow<BaseUiState<CreateUserResponse>>>() {
+    override suspend fun execute(params: UserApiRequest): Flow<BaseUiState<CreateUserResponse>> {
         return flow {
             try {
                 emit(BaseUiState.Loading)
-                val response = userRepository.getUsers()
+                val response = userRepository.createUser(params)
 
                 if (response.isSuccessful) {
                     response.body()?.let { body ->
@@ -28,10 +30,8 @@ class GetUserListUseCase @Inject constructor(
                     )
                 }
             } catch (e: Exception) {
-                emit(
-                    BaseUiState.Error(
-                        message = e.message ?: "Unknown error",
-                    )
+                BaseUiState.ErrorWithException(
+                    message = e.message ?: "Unknown error"
                 )
             }
         }

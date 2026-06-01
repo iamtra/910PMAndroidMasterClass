@@ -50,7 +50,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kh.com.pheaktra.developer.basic.android.R
 import kh.com.pheaktra.developer.basic.android.domain.model.base.BaseUiState
-import kh.com.pheaktra.developer.basic.android.domain.model.request.UserUpdateRequest
+import kh.com.pheaktra.developer.basic.android.domain.model.request.UpdateUserRequest
 import kh.com.pheaktra.developer.basic.android.domain.model.response.UserApiResponse
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
@@ -93,12 +93,12 @@ fun ScreenUserApi(
     }
 
     fun onUpdate() {
-        val body = UserUpdateRequest(
+        val body = UpdateUserRequest(
             name = name,
-            email = email
+            email = email,
+            id = id
         )
         userApiVM.updateUser(
-            id = id,
             body = body
         )
     }
@@ -148,7 +148,7 @@ fun ScreenUserApi(
             is BaseUiState.Loading -> LoadingUtil.showLoading()
 
             is BaseUiState.Success -> {
-                LoadingUtil.hideLoading()
+//                LoadingUtil.hideLoading()
                 userApiVM.getUserList()
                 onToastMessage(state.data.message)
             }
@@ -202,8 +202,8 @@ fun ScreenUserApi(
             is BaseUiState.Loading -> LoadingUtil.showLoading()
 
             is BaseUiState.Success -> {
-                userApiVM.getUserList()
                 LoadingUtil.hideLoading()
+                userApiVM.getUserList()
             }
 
             is BaseUiState.Error -> {

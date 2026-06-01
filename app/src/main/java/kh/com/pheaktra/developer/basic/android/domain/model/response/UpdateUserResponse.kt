@@ -1,12 +1,12 @@
 package kh.com.pheaktra.developer.basic.android.domain.model.response
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserUpdateResponse(
-    val id: Int,
-    val name: String,
-    val email: String,
+data class UpdateUserResponse(
+    val message: String,
+    val data: UserApiResponse
 )
 
 

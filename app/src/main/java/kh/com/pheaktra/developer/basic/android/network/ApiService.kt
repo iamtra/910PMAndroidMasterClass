@@ -1,11 +1,11 @@
 package kh.com.pheaktra.developer.basic.android.network
 
 import kh.com.pheaktra.developer.basic.android.domain.model.request.UserApiRequest
-import kh.com.pheaktra.developer.basic.android.domain.model.request.UserUpdateRequest
+import kh.com.pheaktra.developer.basic.android.domain.model.request.UpdateUserRequest
 import kh.com.pheaktra.developer.basic.android.domain.model.response.CreateUserResponse
 import kh.com.pheaktra.developer.basic.android.domain.model.response.DeleteUserResponse
 import kh.com.pheaktra.developer.basic.android.domain.model.response.GetListUserResponse
-import kh.com.pheaktra.developer.basic.android.domain.model.response.UserUpdateResponse
+import kh.com.pheaktra.developer.basic.android.domain.model.response.UpdateUserResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -25,5 +25,5 @@ interface ApiService {
     suspend fun deleteUser(@Path("id") id: String): Response<DeleteUserResponse>
 
     @PUT("users/{id}")
-    suspend fun updateUser(@Path("id") id: String, @Body user: UserUpdateRequest): Response<UserUpdateResponse>
+    suspend fun updateUser(@Path("id") id: String, @Body user: UpdateUserRequest): Response<UpdateUserResponse>
 }

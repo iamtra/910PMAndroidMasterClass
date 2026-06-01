@@ -6,12 +6,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kh.com.pheaktra.developer.basic.android.domain.model.base.BaseUiState
 import kh.com.pheaktra.developer.basic.android.domain.model.request.UserApiRequest
-import kh.com.pheaktra.developer.basic.android.domain.model.request.UserUpdateRequest
+import kh.com.pheaktra.developer.basic.android.domain.model.request.UpdateUserRequest
 import kh.com.pheaktra.developer.basic.android.domain.model.response.CreateUserResponse
 import kh.com.pheaktra.developer.basic.android.domain.model.response.DeleteUserResponse
 import kh.com.pheaktra.developer.basic.android.domain.model.response.GetListUserResponse
-import kh.com.pheaktra.developer.basic.android.domain.model.response.UserUpdateResponse
+import kh.com.pheaktra.developer.basic.android.domain.model.response.UpdateUserResponse
+import kh.com.pheaktra.developer.basic.android.domain.usecase.CreateUserUseCase
+import kh.com.pheaktra.developer.basic.android.domain.usecase.DeleteUserUseCase
 import kh.com.pheaktra.developer.basic.android.domain.usecase.GetUserListUseCase
+import kh.com.pheaktra.developer.basic.android.domain.usecase.UpdateUserUseCase
 import kh.com.pheaktra.developer.basic.android.network.RetrofitClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,7 +22,10 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class UserApiVM @Inject constructor(
-    private val getUserListUseCase: GetUserListUseCase
+    private val getUserListUseCase: GetUserListUseCase,
+    private val createUserUseCase: CreateUserUseCase,
+    private val deleteUserUseCase: DeleteUserUseCase,
+    private val updateUserUseCase: UpdateUserUseCase
 ) : ViewModel() {
     private val _userListUiState: MutableStateFlow<BaseUiState<GetListUserResponse>?> =
         MutableStateFlow(BaseUiState.None)
@@ -33,7 +39,7 @@ class UserApiVM @Inject constructor(
         MutableStateFlow(null)
     val deleteUserState = _deleteUserUiState.asStateFlow()
 
-    private val _updateUserUiState: MutableStateFlow<BaseUiState<UserUpdateResponse>?> =
+    private val _updateUserUiState: MutableStateFlow<BaseUiState<UpdateUserResponse>?> =
         MutableStateFlow(null)
     val updateUserState = _updateUserUiState.asStateFlow()
 
@@ -52,26 +58,13 @@ class UserApiVM @Inject constructor(
      * Create user from api
      */
     fun createUser(name: String, email: String) {
+        val body = UserApiRequest(
+            name = name,
+            email = email
+        )
         viewModelScope.launch {
-            try {
-                _createUserUiState.emit(BaseUiState.Loading)
-                val body = UserApiRequest(name, email)
-                val response = RetrofitClient.instance.createUser(body)
-//                if (response.isSuccessful) {
-//                    val body = response.body()
-//                    if (body?.data != null) {
-//                        _createUserUiState.emit(BaseUiState.Success(body))
-//                    }
-//                } else {
-//                    _createUserUiState.emit(BaseUiState.Error(response.message()))
-//                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                _createUserUiState.emit(
-                    BaseUiState.ErrorWithException(
-                        e.message ?: "Unknown error"
-                    )
-                )
+            createUserUseCase.invoke(params = body).collect {
+                _createUserUiState.value = it
             }
         }
     }
@@ -82,44 +75,22 @@ class UserApiVM @Inject constructor(
      */
     fun deleteUser(id: String) {
         viewModelScope.launch {
-            _deleteUserUiState.value = BaseUiState.Loading
-
-            try {
-                val response = RetrofitClient.instance.deleteUser(id)
-                if (response.isSuccessful) {
-                    _deleteUserUiState.value = BaseUiState.Success(response.body()!!)
-                } else {
-                    _deleteUserUiState.value = BaseUiState.Error(response.message())
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                _deleteUserUiState.value =
-                    BaseUiState.ErrorWithException(e.message ?: "Unknown error")
-            }
+            deleteUserUseCase.invoke(params = id)
+                .collect(_deleteUserUiState)
         }
     }
 
     /**
      * Update user from api
      * @param id Int
-     * @param body UserUpdateRequest
+     * @param body UpdateUserRequest
      */
-    fun updateUser(id: String, body: UserUpdateRequest) {
+    fun updateUser(body: UpdateUserRequest) {
         viewModelScope.launch {
-            _updateUserUiState.value = BaseUiState.Loading
-            try {
-                val response = RetrofitClient.instance.updateUser(id, body)
-
-                if (response.isSuccessful) {
-                    _updateUserUiState.value = BaseUiState.Success(response.body()!!)
-                } else {
-                    _updateUserUiState.value = BaseUiState.Error(response.message())
+            updateUserUseCase.invoke(params = body)
+                .collect {
+                    _updateUserUiState.emit(it)
                 }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                _updateUserUiState.value =
-                    BaseUiState.ErrorWithException(e.message ?: "Unknown error")
-            }
         }
     }
 
