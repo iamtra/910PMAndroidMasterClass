@@ -49,9 +49,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kh.com.pheaktra.developer.basic.android.R
-import kh.com.pheaktra.developer.basic.android.domain.model.base.BaseUiState
-import kh.com.pheaktra.developer.basic.android.domain.model.request.UpdateUserRequest
-import kh.com.pheaktra.developer.basic.android.domain.model.response.UserApiResponse
+import kh.com.pheaktra.developer.basic.android.data.base.BaseUiState
+import kh.com.pheaktra.developer.basic.android.data.request.UpdateUserRequest
+import kh.com.pheaktra.developer.basic.android.data.response.UserApiResponse
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
 

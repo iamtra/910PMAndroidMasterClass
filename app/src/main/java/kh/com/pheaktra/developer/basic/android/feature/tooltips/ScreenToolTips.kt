@@ -36,8 +36,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kh.com.pheaktra.developer.basic.android.R
-import kh.com.pheaktra.developer.basic.android.domain.model.base.TooltipViewModel
-import kh.com.pheaktra.developer.basic.android.domain.model.base.ReceiverAccountModel
+import kh.com.pheaktra.developer.basic.android.data.base.TooltipViewModel
+import kh.com.pheaktra.developer.basic.android.data.base.ReceiverAccountModel
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

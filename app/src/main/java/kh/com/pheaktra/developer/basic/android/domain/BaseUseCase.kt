@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.android.domain.model.base
+package kh.com.pheaktra.developer.basic.android.domain
 
 abstract class BaseUseCase<in Params, out Result> {
 
@@ -8,3 +8,11 @@ abstract class BaseUseCase<in Params, out Result> {
 
     protected abstract suspend fun execute(params: Params): Result
 }
+
+/**
+ * Task List
+ *  - id: String -> Generate by room
+ *  - task_name: String
+ *  - description
+ *  - completedYN: String -> Y: Yes, N: No
+ */

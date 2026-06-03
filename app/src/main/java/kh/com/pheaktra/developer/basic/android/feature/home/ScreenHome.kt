@@ -32,7 +32,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import kh.com.pheaktra.developer.basic.android.R
 import kh.com.pheaktra.developer.basic.android.feature.home.HomeVM
-import kh.com.pheaktra.developer.basic.android.domain.model.base.BaseUiState
+import kh.com.pheaktra.developer.basic.android.data.base.BaseUiState
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
 

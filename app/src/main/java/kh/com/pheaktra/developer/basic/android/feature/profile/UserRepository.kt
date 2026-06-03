@@ -1,6 +1,6 @@
-package kh.com.pheaktra.developer.basic.android.feature.profile.profile
+package kh.com.pheaktra.developer.basic.android.feature.profile
 
-import kh.com.pheaktra.developer.basic.android.domain.model.base.UserModel
+import kh.com.pheaktra.developer.basic.android.data.base.UserModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

@@ -1,11 +1,9 @@
 package kh.com.pheaktra.developer.basic.android.domain.usecase
 
-import kh.com.pheaktra.developer.basic.android.domain.model.base.BaseUiState
-import kh.com.pheaktra.developer.basic.android.domain.model.base.BaseUseCase
-import kh.com.pheaktra.developer.basic.android.domain.model.request.UpdateUserRequest
-import kh.com.pheaktra.developer.basic.android.domain.model.request.UserApiRequest
-import kh.com.pheaktra.developer.basic.android.domain.model.response.CreateUserResponse
-import kh.com.pheaktra.developer.basic.android.domain.model.response.UpdateUserResponse
+import kh.com.pheaktra.developer.basic.android.data.base.BaseUiState
+import kh.com.pheaktra.developer.basic.android.data.request.UpdateUserRequest
+import kh.com.pheaktra.developer.basic.android.data.response.UpdateUserResponse
+import kh.com.pheaktra.developer.basic.android.domain.BaseUseCase
 import kh.com.pheaktra.developer.basic.android.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

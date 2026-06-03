@@ -2,7 +2,7 @@ package kh.com.pheaktra.developer.basic.android.feature.badge
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kh.com.pheaktra.developer.basic.android.domain.model.base.BaseUiState
+import kh.com.pheaktra.developer.basic.android.data.base.BaseUiState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

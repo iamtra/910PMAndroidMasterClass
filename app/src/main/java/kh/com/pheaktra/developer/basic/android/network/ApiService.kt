@@ -1,11 +1,11 @@
 package kh.com.pheaktra.developer.basic.android.network
 
-import kh.com.pheaktra.developer.basic.android.domain.model.request.UserApiRequest
-import kh.com.pheaktra.developer.basic.android.domain.model.request.UpdateUserRequest
-import kh.com.pheaktra.developer.basic.android.domain.model.response.CreateUserResponse
-import kh.com.pheaktra.developer.basic.android.domain.model.response.DeleteUserResponse
-import kh.com.pheaktra.developer.basic.android.domain.model.response.GetListUserResponse
-import kh.com.pheaktra.developer.basic.android.domain.model.response.UpdateUserResponse
+import kh.com.pheaktra.developer.basic.android.data.request.UserApiRequest
+import kh.com.pheaktra.developer.basic.android.data.request.UpdateUserRequest
+import kh.com.pheaktra.developer.basic.android.data.response.CreateUserResponse
+import kh.com.pheaktra.developer.basic.android.data.response.DeleteUserResponse
+import kh.com.pheaktra.developer.basic.android.data.response.GetListUserResponse
+import kh.com.pheaktra.developer.basic.android.data.response.UpdateUserResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE

@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.android.domain.model.request
+package kh.com.pheaktra.developer.basic.android.data.request
 
 import kotlinx.serialization.Serializable
 

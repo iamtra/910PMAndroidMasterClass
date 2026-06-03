@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.android.domain.model.response
+package kh.com.pheaktra.developer.basic.android.data.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

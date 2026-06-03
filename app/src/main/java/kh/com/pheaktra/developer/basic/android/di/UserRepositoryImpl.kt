@@ -2,12 +2,12 @@ package kh.com.pheaktra.developer.basic.android.di
 
 import jakarta.inject.Inject
 import kh.com.pheaktra.developer.basic.android.domain.repository.UserRepository
-import kh.com.pheaktra.developer.basic.android.domain.model.request.UserApiRequest
-import kh.com.pheaktra.developer.basic.android.domain.model.request.UpdateUserRequest
-import kh.com.pheaktra.developer.basic.android.domain.model.response.CreateUserResponse
-import kh.com.pheaktra.developer.basic.android.domain.model.response.DeleteUserResponse
-import kh.com.pheaktra.developer.basic.android.domain.model.response.GetListUserResponse
-import kh.com.pheaktra.developer.basic.android.domain.model.response.UpdateUserResponse
+import kh.com.pheaktra.developer.basic.android.data.request.UserApiRequest
+import kh.com.pheaktra.developer.basic.android.data.request.UpdateUserRequest
+import kh.com.pheaktra.developer.basic.android.data.response.CreateUserResponse
+import kh.com.pheaktra.developer.basic.android.data.response.DeleteUserResponse
+import kh.com.pheaktra.developer.basic.android.data.response.GetListUserResponse
+import kh.com.pheaktra.developer.basic.android.data.response.UpdateUserResponse
 import kh.com.pheaktra.developer.basic.android.network.ApiService
 import retrofit2.Response
 

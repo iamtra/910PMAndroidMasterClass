@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.android.domain.model.base
+package kh.com.pheaktra.developer.basic.android.data.base
 
 import androidx.annotation.DrawableRes
 import kh.com.pheaktra.developer.basic.android.R

@@ -28,7 +28,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kh.com.pheaktra.developer.basic.android.R
-import kh.com.pheaktra.developer.basic.android.domain.model.base.BaseUiState
+import kh.com.pheaktra.developer.basic.android.data.base.BaseUiState
 import kh.com.pheaktra.developer.basic.android.feature.badge.BadgeViewModel
 import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
 
