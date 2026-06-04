@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.android.di
+package kh.com.pheaktra.developer.basic.android.di.impl
 
 import jakarta.inject.Inject
 import kh.com.pheaktra.developer.basic.android.domain.repository.UserRepository
