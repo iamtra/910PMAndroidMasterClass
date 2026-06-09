@@ -16,12 +16,13 @@ val Blue40 = Color(0xFF0288D1)
 
 val Green80 = Color(0xFFC8E6C9)
 val Green40 = Color(0xFF388E3C)
+val Green50 = Color(0xFF72E776)
 
 val Orange80 = Color(0xFFFFE0B2)
 val Orange40 = Color(0xFFF57C00)
 
 val Red80 = Color(0xFFFFCDD2)
-val Red40 = Color(0xFFD32F2F)
+val Red40 = Color(0xFF191A1D)
 
 val Teal80 = Color(0xFFB2DFDB)
 val Teal40 = Color(0xFF00796B)

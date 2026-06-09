@@ -1,5 +1,6 @@
 package kh.com.pheaktra.developer.basic.android.navigation
 
+import kh.com.pheaktra.developer.basic.android.domain.model.TaskModel
 import kotlinx.serialization.Serializable
 
 /**
@@ -45,6 +46,13 @@ data object SelectSingleVideos
 data object SelectMultipleVideos
 data object SelectPhotoAndVideos
 data object CameraLauncher
+
+data object RoomDatabaseScreen
+
+@Serializable
+data class CreateTaskScreen(val task: TaskModel? = null)
+
+
 
 @Serializable
 data class UserProfile(val id: Int)

@@ -34,3 +34,10 @@ object AppDatabaseModule {
         return appDatabase.taskDao()
     }
 }
+
+/**
+ * App start -> DB automatically open
+ * App close -> DB automatically close
+ *
+ * When we need to use database, we will call the database to open and close after the task is completed
+ */

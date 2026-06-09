@@ -31,6 +31,8 @@ import kh.com.pheaktra.developer.basic.android.feature.radiobutton.ScreenRadioBu
 import kh.com.pheaktra.developer.basic.android.feature.loading_progress.ScreenScreenLoadingAndProgress
 import kh.com.pheaktra.developer.basic.android.feature.notifcation.notifcation.ScreenNotificationPermission
 import kh.com.pheaktra.developer.basic.android.feature.profile.profile.ScreenProfile
+import kh.com.pheaktra.developer.basic.android.feature.roomdatabase.ScreenCreateTask
+import kh.com.pheaktra.developer.basic.android.feature.roomdatabase.ScreenRoomDatabase
 import kh.com.pheaktra.developer.basic.android.feature.segmentedbutton.ScreenSingleChoiceSegmentedButton
 import kh.com.pheaktra.developer.basic.android.feature.selectmultiplephotos.SelectMultiplePhotos
 import kh.com.pheaktra.developer.basic.android.feature.selectmultiplevidoes.SelectMultipleVideos
@@ -176,6 +178,25 @@ fun Navigation() {
                     }
                 }
 
+                is RoomDatabaseScreen -> NavEntry(key) {
+                    ScreenRoomDatabase(
+                        onBack = {
+                            onBack()
+                        },
+                        onCreateTask = {
+                            backStack.add(CreateTaskScreen(null))
+                        }
+                    )
+                }
+
+                is CreateTaskScreen -> NavEntry(key) {
+                    ScreenCreateTask(
+                        taskData = key.task,
+                        onBack = {
+                            onBack()
+                        },
+                        )
+                }
 
                 else -> NavEntry(Unit) { Text("Unknown route") }
             }

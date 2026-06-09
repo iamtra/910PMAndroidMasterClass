@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.android.domain.usecase
+package kh.com.pheaktra.developer.basic.android.domain.usecase.local
 
 import kh.com.pheaktra.developer.basic.android.data.base.BaseUiState
 import kh.com.pheaktra.developer.basic.android.domain.BaseUseCase
@@ -9,13 +9,13 @@ import kotlinx.coroutines.flow.flow
 import okio.IOException
 import javax.inject.Inject
 
-class CreateTaskUseCase @Inject constructor(
+class UpdateTaskUseCase @Inject constructor(
     private val taskRepository: TaskRepository
-) : BaseUseCase<String, Flow<BaseUiState<Unit>>>() {
-    override suspend fun execute(params: String): Flow<BaseUiState<Unit>> {
+) : BaseUseCase<TaskModel, Flow<BaseUiState<Unit>>>() {
+    override suspend fun execute(params: TaskModel): Flow<BaseUiState<Unit>> {
         return flow {
             try {
-                taskRepository.deleteTask(taskId = params)
+                taskRepository.updateTask(params)
                 BaseUiState.Success(Unit)
             } catch (e: IOException) {
                 emit(BaseUiState.ErrorWithException(e.message ?: ""))

@@ -22,6 +22,7 @@ import kh.com.pheaktra.developer.basic.android.navigation.NavigationDrawerScreen
 import kh.com.pheaktra.developer.basic.android.navigation.NotificationPermissionScreen
 import kh.com.pheaktra.developer.basic.android.navigation.ProgressScreen
 import kh.com.pheaktra.developer.basic.android.navigation.RadioButtonScreen
+import kh.com.pheaktra.developer.basic.android.navigation.RoomDatabaseScreen
 import kh.com.pheaktra.developer.basic.android.navigation.SelectMultiplePhots
 import kh.com.pheaktra.developer.basic.android.navigation.SelectMultipleVideos
 import kh.com.pheaktra.developer.basic.android.navigation.SelectPhotoAndVideos
@@ -305,6 +306,13 @@ class HomeRepository {
             route = CameraLauncher,
             iconUrl = "https://img.icons8.com/color/96/camera.png"
         ),
+        ComponentModel(
+            id = 38,
+            title = "Room Database",
+            description = "Local database storage with CRUD operations, relationships, and offline data persistence",
+            route = RoomDatabaseScreen,
+            iconUrl = "https://img.icons8.com/color/96/database.png"
+        )
     )
 
     suspend fun getComponentList(): Flow<List<ComponentModel>> {

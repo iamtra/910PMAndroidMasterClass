@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.android.domain.usecase
+package kh.com.pheaktra.developer.basic.android.domain.usecase.local
 
 import kh.com.pheaktra.developer.basic.android.data.base.BaseUiState
 import kh.com.pheaktra.developer.basic.android.domain.BaseUseCase
@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flow
 import okio.IOException
 import javax.inject.Inject
 
-class DeleteTaskUseCase @Inject constructor(
+class CreateTaskUseCase @Inject constructor(
     private val taskRepository: TaskRepository
 ) : BaseUseCase<TaskModel, Flow<BaseUiState<Unit>>>() {
     override suspend fun execute(params: TaskModel): Flow<BaseUiState<Unit>> {

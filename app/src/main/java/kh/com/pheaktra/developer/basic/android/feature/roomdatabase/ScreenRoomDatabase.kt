@@ -1,39 +1,83 @@
 package kh.com.pheaktra.developer.basic.android.feature.roomdatabase
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kh.com.pheaktra.developer.basic.android.R
+import kh.com.pheaktra.developer.basic.android.common.ValueYN
 import kh.com.pheaktra.developer.basic.android.data.base.BaseUiState
+import kh.com.pheaktra.developer.basic.android.di.local.entity.Task
+import kh.com.pheaktra.developer.basic.android.domain.model.TaskModel
+import kh.com.pheaktra.developer.basic.android.domain.model.isCompleted
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
+import kh.com.pheaktra.developer.basic.android.ui.theme.Green50
+import java.nio.file.WatchEvent
 
+/**
+ * 1. Can get data from database
+ * 2. Can create new task
+ * 3. Can update task, but state did not reactive (Reactive state)
+ * 4. Delete task : Need to test tmr
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenRoomDatabase(
     roomDatabaseVM: RoomDatabaseVM = viewModel(),
     onBack: () -> Unit,
+    onCreateTask: () -> Unit
 ) {
 
     val taskListUiState by roomDatabaseVM.taskListUiState.collectAsStateWithLifecycle()
+    val updateTaskUiState by roomDatabaseVM.updateTaskUiState.collectAsStateWithLifecycle()
+
+    fun onUpdateTask(task: TaskModel) {
+        val status = if (task.isCompleted()) ValueYN.NO.value else ValueYN.YES.value
+        roomDatabaseVM.updateTask(task.copy(completedYN = status))
+    }
+
+    LaunchedEffect(Unit) {
+        roomDatabaseVM.getTaskList()
+    }
+
+    LaunchedEffect(Unit) {
+        when (updateTaskUiState) {
+            is BaseUiState.Success -> {
+                roomDatabaseVM.getTaskList()
+            }
+            else -> {}
+        }
+    }
 
     Scaffold(
         modifier = Modifier.navigationBarsPadding(),
@@ -59,6 +103,19 @@ fun ScreenRoomDatabase(
                 )
             )
         },
+        floatingActionButton = {
+            ExtendedFloatingActionButton(
+                onClick = {
+                    onCreateTask()
+                },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Filled.Edit,
+                        contentDescription = "Extended floating action button.")
+                },
+                text = { Text(text = "Create Task") },
+            )
+        }
     ) { padding ->
 
         when (val state = taskListUiState) {
@@ -67,12 +124,21 @@ fun ScreenRoomDatabase(
                     modifier = Modifier
                         .padding(padding)
                         .fillMaxSize()
-                        .background(MaterialTheme.colorScheme.primaryContainer),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
+                        .background(MaterialTheme.colorScheme.background),
+                    verticalArrangement = Arrangement.Top,
                 ) {
-                    for (i in state.data) {
-                        Text(i.taskName)
+                    for (task in state.data) {
+                        TaskItem(
+                            modifier = Modifier
+                                .padding(vertical = 8.dp)
+                                .padding(horizontal = 16.dp)
+                                .clickable {
+                                    onUpdateTask(task)
+                                },
+                            task = task
+                        ) {
+                            onUpdateTask(task)
+                        }
                     }
                 }
             }
@@ -81,13 +147,64 @@ fun ScreenRoomDatabase(
     }
 }
 
+@Composable
+fun TaskItem(modifier: Modifier = Modifier, task: TaskModel, onClick: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .then(modifier)
+            .fillMaxWidth()
+            .height(96.dp)
+            .background(
+                color = MaterialTheme.colorScheme.primaryContainer,
+                shape = MaterialTheme.shapes.large
+            ),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .padding(start = 16.dp)
+        ) {
+            Text(
+                text = task.taskName,
+                style = MaterialTheme.typography.titleLarge
+            )
+            Text(
+                modifier = Modifier
+                    .padding(top = 8.dp),
+                text = task.description,
+                style = MaterialTheme.typography.bodyMedium
+
+            )
+        }
+        RadioButton(
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .size(24.dp),
+            selected = task.isCompleted(),
+            onClick = {
+                onClick()
+            }
+        )
+    }
+}
+
 @Preview(showBackground = false)
 @Composable
 fun ScreenRoomDatabasePreview() {
+    val task = TaskModel(
+        taskName = "Task Name",
+        description = "Description Description Description",
+        completedYN = "N"
+    )
     BaseTheme() {
-        ScreenRoomDatabase {
+        TaskItem(task = task) {
 
         }
+//        ScreenRoomDatabase(
+//            onBack = {},
+//            onCreateTask = {}
+//        )
     }
 }
 
