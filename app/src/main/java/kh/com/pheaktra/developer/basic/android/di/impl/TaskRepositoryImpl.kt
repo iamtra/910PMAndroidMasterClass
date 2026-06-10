@@ -7,16 +7,15 @@ import kh.com.pheaktra.developer.basic.android.domain.model.toTask
 import kh.com.pheaktra.developer.basic.android.domain.repository.TaskRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class TaskRepositoryImpl @Inject constructor(
     private val taskDao: TaskDao
 ) : TaskRepository {
-    override suspend fun getAllTasks(): List<TaskModel> {
-        return withContext(Dispatchers.IO) {
-            taskDao.getAllTasks().map { it.toTaskModel() }
-        }
+    override fun getAllTasks(): Flow<List<TaskModel>> {
+        return taskDao.getAllTasks().map { it.toTaskModel() }
     }
 
     override suspend fun insertTask(task: TaskModel) {
@@ -29,7 +28,7 @@ class TaskRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun deleteTask(taskId: String) {
+    override suspend fun deleteTask(taskId: Long) {
         taskDao.deleteTask(taskId)
     }
 }

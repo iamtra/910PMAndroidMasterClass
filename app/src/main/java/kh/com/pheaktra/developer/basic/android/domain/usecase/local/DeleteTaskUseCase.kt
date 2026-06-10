@@ -10,8 +10,8 @@ import javax.inject.Inject
 
 class DeleteTaskUseCase @Inject constructor(
     private val taskRepository: TaskRepository
-) : BaseUseCase<String, Flow<BaseUiState<Unit>>>() {
-    override suspend fun execute(params: String): Flow<BaseUiState<Unit>> {
+) : BaseUseCase<Long, Flow<BaseUiState<Unit>>>() {
+    override suspend fun execute(params: Long): Flow<BaseUiState<Unit>> {
         return flow {
             try {
                 taskRepository.deleteTask(taskId = params)

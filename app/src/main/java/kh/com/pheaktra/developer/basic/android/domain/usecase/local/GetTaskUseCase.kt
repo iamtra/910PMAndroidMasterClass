@@ -5,24 +5,25 @@ import kh.com.pheaktra.developer.basic.android.domain.BaseUseCase
 import kh.com.pheaktra.developer.basic.android.domain.model.TaskModel
 import kh.com.pheaktra.developer.basic.android.domain.repository.TaskRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 class GetTaskUseCase @Inject constructor(
     private val repository: TaskRepository
-) : BaseUseCase<Unit, Flow<BaseUiState<List<TaskModel>>>>() {
-
-    override suspend fun execute(
-        params: Unit
-    ): Flow<BaseUiState<List<TaskModel>>> {
-        return flow {
-            try {
+) {
+    operator fun invoke(): Flow<BaseUiState<List<TaskModel>>> {
+        return repository.getAllTasks()
+            .map<List<TaskModel>, BaseUiState<List<TaskModel>>> {
+                BaseUiState.Success(it)
+            }
+            .onStart {
                 emit(BaseUiState.Loading)
-                val response = repository.getAllTasks()
-                emit(BaseUiState.Success(response))
-            } catch (e: Exception) {
+            }
+            .catch { e ->
                 emit(BaseUiState.ErrorWithException(e.message ?: ""))
             }
-        }
     }
 }

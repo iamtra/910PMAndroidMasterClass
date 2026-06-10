@@ -22,7 +22,7 @@ val Orange80 = Color(0xFFFFE0B2)
 val Orange40 = Color(0xFFF57C00)
 
 val Red80 = Color(0xFFFFCDD2)
-val Red40 = Color(0xFF191A1D)
+val Red40 = Color(0xFFFF0051)
 
 val Teal80 = Color(0xFFB2DFDB)
 val Teal40 = Color(0xFF00796B)

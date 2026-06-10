@@ -185,6 +185,9 @@ fun Navigation() {
                         },
                         onCreateTask = {
                             backStack.add(CreateTaskScreen(null))
+                        },
+                        onGoToUpdateTask = { task ->
+                            backStack.add(CreateTaskScreen(task))
                         }
                     )
                 }
