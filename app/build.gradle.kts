@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId = "kh.com.pheaktra.developer.basic.android"
         minSdk = 29
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0.0"
 
@@ -40,6 +40,7 @@ android {
     buildFeatures {
         compose = true
     }
+//    dynamicFeatures = [":dynamic_feature", ":dynamic_feature2"]
 }
 
 dependencies {
@@ -81,6 +82,9 @@ dependencies {
     // Room database
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
+
+    // Local module
+    implementation(project(":core"))
 
 
     testImplementation(libs.junit)

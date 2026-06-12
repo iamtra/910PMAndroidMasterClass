@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "910PMAndroidAppMasterClass"
 include(":app")
+include(":core")

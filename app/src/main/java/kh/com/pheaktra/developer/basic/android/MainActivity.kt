@@ -12,9 +12,13 @@ import kh.com.pheaktra.developer.basic.android.network.ApiService
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kh.com.pheaktra.developer.basic.android.util.LoadingContent
 import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
+import kh.com.pheaktra.developer.kmp.basic.core.Engine
 import java.time.LocalDateTime
 import java.util.Date
 
+/**
+ * Multi modulization in android
+ */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val currentDateTime = LocalDateTime.now()
@@ -22,7 +26,9 @@ class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        println("====> MainActivity onCreate $currentDateTime")
+//        println("====> MainActivity onCreate $currentDateTime")
+        val engine = Engine()
+        engine.start()
 
         enableEdgeToEdge()
         setContent {
@@ -57,17 +63,17 @@ class MainActivity : ComponentActivity() {
 
     override fun onPause() {
         super.onPause()
-        println("====> MainActivity onPause")
+//        println("====> MainActivity onPause")
     }
 
     override fun onResume() {
         super.onResume()
-        println("====> MainActivity onResume")
+//        println("====> MainActivity onResume")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        println("====> MainActivity onDestroy $currentDateTime")
+//        println("====> MainActivity onDestroy $currentDateTime")
     }
 }
 

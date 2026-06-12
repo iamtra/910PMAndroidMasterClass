@@ -1,5 +1,7 @@
 package kh.com.pheaktra.developer.basic.android.feature.roomdatabase
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,6 +29,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,6 +41,10 @@ import kh.com.pheaktra.developer.basic.android.R
 import kh.com.pheaktra.developer.basic.android.domain.model.TaskModel
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 
+/**
+ * Focus manager
+ * Keyboard controller
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenCreateTask(
@@ -42,6 +52,9 @@ fun ScreenCreateTask(
     roomDatabaseVM: RoomDatabaseVM = viewModel(),
     onBack: () -> Unit,
 ) {
+    val focusManager = LocalFocusManager.current
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val focusRequester = remember { FocusRequester() }
 
     var taskName by remember { mutableStateOf("") }
     var taskDescription by remember { mutableStateOf("") }
@@ -86,8 +99,23 @@ fun ScreenCreateTask(
         }
     }
 
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+        keyboardController?.show()
+    }
+
     Scaffold(
-        modifier = Modifier.navigationBarsPadding(),
+        modifier = Modifier
+            .navigationBarsPadding()
+            .clickable(
+                enabled = true,
+                onClick = {
+                    focusManager.clearFocus()
+                    keyboardController?.hide()
+                },
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() },
+            ),
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -139,7 +167,8 @@ fun ScreenCreateTask(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 16.dp)
-                    .padding(horizontal = 16.dp),
+                    .padding(horizontal = 16.dp)
+                    .focusRequester(focusRequester),
                 value = taskName,
                 onValueChange = { value ->
                     if (value.isNotEmpty()) {
