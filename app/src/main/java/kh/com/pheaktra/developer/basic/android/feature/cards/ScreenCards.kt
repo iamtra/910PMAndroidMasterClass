@@ -311,5 +311,3 @@ val ProductModel.priceDisplay get() = "$ $price"
 
 
 
-
-

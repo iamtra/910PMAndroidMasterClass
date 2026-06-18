@@ -40,7 +40,6 @@ android {
     buildFeatures {
         compose = true
     }
-//    dynamicFeatures = [":dynamic_feature", ":dynamic_feature2"]
 }
 
 dependencies {
@@ -85,6 +84,10 @@ dependencies {
 
     // Local module
     implementation(project(":core"))
+    implementation(project(":core:data"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:model"))
+    implementation(project(":core:network"))
 
 
     testImplementation(libs.junit)

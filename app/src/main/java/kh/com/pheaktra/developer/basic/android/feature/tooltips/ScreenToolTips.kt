@@ -34,12 +34,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewModelScope
 import kh.com.pheaktra.developer.basic.android.R
-import kh.com.pheaktra.developer.basic.android.data.base.TooltipViewModel
-import kh.com.pheaktra.developer.basic.android.data.base.ReceiverAccountModel
+import kh.com.pheaktra.developer.basic.android.feature.tooltips.TooltipViewModel
+import kh.com.pheaktra.developer.basic.android.model.base.ReceiverAccountModel
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -180,3 +184,23 @@ fun ScreenToolTipsPreview() {
  *  - Add view model and practice
  *
  */
+class TooltipViewModel : ViewModel() {
+    // Just an example, the actual project won't store the data like this
+    private val accountInfo = ReceiverAccountModel(
+        accountName = "Pheaktra Developer",
+        accountNumber = "19220055",
+        receiverBankName = "Chip Mong Commercial Bank"
+    )
+
+    private val _receiverAccount = MutableStateFlow<ReceiverAccountModel?>(null)
+    val receiverAccount = _receiverAccount.asStateFlow()
+
+
+    fun getAccountInfo() {
+        viewModelScope.launch {
+            _receiverAccount.emit(accountInfo)
+        }
+    }
+
+
+}

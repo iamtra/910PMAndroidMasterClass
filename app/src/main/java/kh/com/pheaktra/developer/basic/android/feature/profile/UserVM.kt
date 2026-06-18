@@ -2,8 +2,8 @@ package kh.com.pheaktra.developer.basic.android.feature.profile.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kh.com.pheaktra.developer.basic.android.data.base.BaseUiState
-import kh.com.pheaktra.developer.basic.android.data.base.UserModel
+import kh.com.pheaktra.developer.basic.android.model.base.BaseUiState
+import kh.com.pheaktra.developer.basic.android.model.base.UserModel
 import kh.com.pheaktra.developer.basic.android.feature.profile.UserRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

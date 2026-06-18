@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kh.com.pheaktra.developer.basic.android.R
-import kh.com.pheaktra.developer.basic.android.data.base.BaseUiState
+import kh.com.pheaktra.developer.basic.android.model.base.BaseUiState
 import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
 
 @OptIn(ExperimentalMaterial3Api::class)

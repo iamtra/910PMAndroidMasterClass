@@ -8,13 +8,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import dagger.hilt.android.AndroidEntryPoint
 import kh.com.pheaktra.developer.basic.android.navigation.Navigation
-import kh.com.pheaktra.developer.basic.android.network.ApiService
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kh.com.pheaktra.developer.basic.android.util.LoadingContent
 import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
 import kh.com.pheaktra.developer.kmp.basic.core.Engine
 import java.time.LocalDateTime
-import java.util.Date
 
 /**
  * Multi modulization in android

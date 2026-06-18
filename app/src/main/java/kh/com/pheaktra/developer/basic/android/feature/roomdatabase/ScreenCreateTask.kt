@@ -38,7 +38,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kh.com.pheaktra.developer.basic.android.R
-import kh.com.pheaktra.developer.basic.android.domain.model.TaskModel
+import kh.com.pheaktra.developer.kmp.basic.domain.model.TaskModel
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 
 /**

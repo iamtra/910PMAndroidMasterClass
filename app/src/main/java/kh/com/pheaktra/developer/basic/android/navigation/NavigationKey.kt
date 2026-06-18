@@ -1,6 +1,6 @@
 package kh.com.pheaktra.developer.basic.android.navigation
 
-import kh.com.pheaktra.developer.basic.android.domain.model.TaskModel
+import kh.com.pheaktra.developer.kmp.basic.domain.model.TaskModel
 import kotlinx.serialization.Serializable
 
 /**

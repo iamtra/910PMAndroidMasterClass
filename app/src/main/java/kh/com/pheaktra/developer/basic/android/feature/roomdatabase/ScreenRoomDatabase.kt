@@ -31,7 +31,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -47,9 +46,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kh.com.pheaktra.developer.basic.android.R
 import kh.com.pheaktra.developer.basic.android.common.ValueYN
-import kh.com.pheaktra.developer.basic.android.data.base.BaseUiState
-import kh.com.pheaktra.developer.basic.android.domain.model.TaskModel
-import kh.com.pheaktra.developer.basic.android.domain.model.isCompleted
+import kh.com.pheaktra.developer.basic.android.model.base.BaseUiState
+import kh.com.pheaktra.developer.kmp.basic.domain.model.TaskModel
+import kh.com.pheaktra.developer.kmp.basic.domain.model.isCompleted
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kh.com.pheaktra.developer.basic.android.ui.theme.Red40
 
