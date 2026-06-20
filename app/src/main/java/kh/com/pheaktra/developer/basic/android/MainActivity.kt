@@ -1,12 +1,20 @@
 package kh.com.pheaktra.developer.basic.android
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.compose.runtime.LaunchedEffect
+import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
+import kh.com.pheaktra.developer.basic.android.feature.notifcation.notifcation.createNotificationChannel
 import kh.com.pheaktra.developer.basic.android.navigation.Navigation
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kh.com.pheaktra.developer.basic.android.util.LoadingContent
@@ -30,6 +38,29 @@ class MainActivity : ComponentActivity() {
 
         enableEdgeToEdge()
         setContent {
+            val permissionLuncher = rememberLauncherForActivityResult(
+                contract = ActivityResultContracts.RequestPermission()
+            ) { isGranted ->
+                if (isGranted) {
+
+                }
+            }
+
+            LaunchedEffect(Unit) {
+                val isGranted = ContextCompat.checkSelfPermission(
+                    this@MainActivity,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED
+                if (isGranted) {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Permission Granted ==> $isGranted",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@LaunchedEffect
+                }
+                permissionLuncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
             BaseTheme() {
 
                 // Create file App()

@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.gms.google.services)
 }
 
 android {
@@ -81,6 +82,10 @@ dependencies {
     // Room database
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
+
+    // Firebase push notification
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 
     // Local module
     implementation(project(":core"))
