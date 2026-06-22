@@ -23,6 +23,9 @@ android {
     }
 
     buildTypes {
+        debug {
+
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -31,6 +34,19 @@ android {
             )
         }
     }
+//    productFlavors {
+//        create("dev") {
+//
+//        }
+//
+//        create("uat") {
+//
+//        }
+//
+//        create("pro") {
+//
+//        }
+//    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -86,6 +102,7 @@ dependencies {
     // Firebase push notification
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+    implementation(libs.firebase.messaging)
 
     // Local module
     implementation(project(":core"))

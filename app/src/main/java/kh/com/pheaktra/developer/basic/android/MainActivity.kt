@@ -136,5 +136,32 @@ interface BillPaymentRepository {
 
     suspend fun getBillPaymentInfo(id: String): String
 }
+/**
+ * Multiple product flavor
+ * 1. Dev
+ * 2. UAT
+ * 3. Production
+ */
+
+/**
+ * Push notifcation
+ * 1. How setup firebase sdk
+ *      - Plugin
+ *      - Dependency
+ *      - Specific any sdk version
+ *
+ * 2. Firebase account and project
+ *      - Account
+ *      - Project (Firebase)
+ *      - How add application
+ *      - download google-service-json
+ *      - where to put google-service-json
+ *
+ * 3. How to test from firebase
+ *      - Test send push from firebase
+ *      - Test from internal cloud system
+ *
+ * 4. How to handle user click on notification
+ */
 
 
