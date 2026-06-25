@@ -8,7 +8,6 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
@@ -36,17 +35,15 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.isGranted
-import com.google.accompanist.permissions.rememberPermissionState
-import com.google.accompanist.permissions.shouldShowRationale
 import kh.com.pheaktra.developer.basic.android.R
+import kh.com.pheaktra.developer.basic.android.feature.notifcation.NotificationVM
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalPermissionsApi::class)
 @Composable
 fun ScreenNotificationPermission(
-    notificationVM: NotifcationVM = viewModel(),
+//    notificationVM: NotificationVM = viewModel(),
     onBack: () -> Unit
 ) {
     val context = LocalContext.current

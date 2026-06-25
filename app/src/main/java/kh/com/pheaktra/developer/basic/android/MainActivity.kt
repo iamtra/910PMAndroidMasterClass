@@ -1,6 +1,8 @@
 package kh.com.pheaktra.developer.basic.android
 
 import android.Manifest
+import android.app.ComponentCaller
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -27,14 +29,15 @@ import java.time.LocalDateTime
  */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val currentDateTime = LocalDateTime.now()
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val route = "${intent.getStringExtra("route")}"
+        println("=====> intent $${intent.getStringExtra("route")}")
+        println("=====> intent $${intent.getStringExtra("id")}")
 //        println("====> MainActivity onCreate $currentDateTime")
-        val engine = Engine()
-        engine.start()
 
         enableEdgeToEdge()
         setContent {
@@ -67,14 +70,19 @@ class MainActivity : ComponentActivity() {
                 if (LoadingUtil.isLoading.value) {
                     LoadingContent()
                 }
-                Navigation()
+                Navigation(route = route)
             }
         }
     }
 
+    override fun onNewIntent(intent: Intent, caller: ComponentCaller) {
+        super.onNewIntent(intent, caller)
+
+        println("====> MainActivity onNewIntent")
+    }
+
     override fun onUserLeaveHint() {
         super.onUserLeaveHint()
-        println("====> MainActivity onUserLeaveHint")
     }
 
     /**
@@ -82,7 +90,6 @@ class MainActivity : ComponentActivity() {
      */
     override fun onStart() {
         super.onStart()
-        println("====> MainActivity onStart")
         // Do something
     }
 
@@ -162,6 +169,11 @@ interface BillPaymentRepository {
  *      - Test from internal cloud system
  *
  * 4. How to handle user click on notification
+ */
+
+/**
+ * June 25, 2026
+ * - Handle user click on notification
  */
 
 

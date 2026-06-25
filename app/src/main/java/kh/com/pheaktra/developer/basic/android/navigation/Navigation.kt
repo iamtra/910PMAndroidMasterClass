@@ -4,10 +4,12 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
+import androidx.tracing.trace
 import kh.com.pheaktra.developer.basic.android.feature.accessphoto.ScreenAccessMultiplePhoto
 import kh.com.pheaktra.developer.basic.android.feature.accessphoto.ScreenAccessPhoto
 import kh.com.pheaktra.developer.basic.android.feature.badge.badge.ScreenBadge
@@ -50,14 +52,25 @@ import kh.com.pheaktra.developer.basic.android.feature.toolbar.ScreenToolbar
 import kh.com.pheaktra.developer.basic.android.feature.topappbar.ScreenTopAppBar
 import kh.com.pheaktra.developer.basic.android.feature.userapi.ScreenUserApi
 
+enum class NotificationType(val value: String) {
+    NOTIFICATION("notification-route"),
+}
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
-fun Navigation() {
+fun Navigation(route: String?) {
 
     val backStack = remember { mutableStateListOf<Any>(HomeScreen) }
 
     fun onBack() {
         backStack.removeLastOrNull()
+    }
+
+    LaunchedEffect(route) {
+        when(route)  {
+            NotificationType.NOTIFICATION.value -> {
+                backStack.add(NotificationPermissionScreen)
+            }
+        }
     }
 
     NavDisplay(
@@ -74,7 +87,9 @@ fun Navigation() {
                 is HomeScreen -> NavEntry(key) {
                     ScreenHome(
                         onClickItem = { key ->
-                            backStack.add(key)
+                            trace("click_item") {
+                                backStack.add(key)
+                            }
                         },
                         onClickProfile = { id ->
                             backStack.add(UserProfile(id))
@@ -198,7 +213,7 @@ fun Navigation() {
                         onBack = {
                             onBack()
                         },
-                        )
+                    )
                 }
 
                 else -> NavEntry(Unit) { Text("Unknown route") }
