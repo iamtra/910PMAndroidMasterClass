@@ -2,8 +2,7 @@ package kh.com.pheaktra.developer.basic.android.feature.notifcation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kh.com.pheaktra.developer.basic.android.network.ApiService
-import kh.com.pheaktra.developer.basic.android.network.RetrofitClient
+import kh.com.pheaktra.developer.basic.android.network.remote.RetrofitClient
 import kotlinx.coroutines.launch
 
 class NotificationVM (

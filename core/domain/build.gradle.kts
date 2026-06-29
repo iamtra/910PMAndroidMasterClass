@@ -13,6 +13,10 @@ android {
     defaultConfig {
         minSdk = 29
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+
+        // Specify which flavor of :core:data to use since :core:domain doesn't have flavors
+        missingDimensionStrategy("environment", "dev")
     }
 
     buildTypes {
@@ -37,9 +41,8 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-
-
-    implementation(libs.jakewharton.retrofit2.kotlinx.serialization.converter)
+    
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

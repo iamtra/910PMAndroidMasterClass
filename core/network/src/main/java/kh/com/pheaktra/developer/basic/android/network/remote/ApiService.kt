@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.android.network
+package kh.com.pheaktra.developer.basic.android.network.remote
 
 import kh.com.pheaktra.developer.basic.android.model.request.UserApiRequest
 import kh.com.pheaktra.developer.basic.android.model.request.UpdateUserRequest

@@ -14,7 +14,7 @@
         android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
-        android:enableOnBackInvokedCallback="false"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -37,8 +37,7 @@
 
         <service
             android:name=".service.fcm.MyFirebaseMessagingService"
-            android:exported="true"
-            android:permission="">
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

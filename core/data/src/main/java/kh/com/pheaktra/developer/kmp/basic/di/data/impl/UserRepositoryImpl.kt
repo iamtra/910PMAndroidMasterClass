@@ -7,7 +7,7 @@ import kh.com.pheaktra.developer.basic.android.model.response.DeleteUserResponse
 import kh.com.pheaktra.developer.basic.android.model.response.GetListUserResponse
 import kh.com.pheaktra.developer.basic.android.model.response.UpdateUserResponse
 import javax.inject.Inject
-import kh.com.pheaktra.developer.basic.android.network.ApiService
+import kh.com.pheaktra.developer.basic.android.network.remote.ApiService
 import kh.com.pheaktra.developer.kmp.basic.domain.repository.UserRepository
 import retrofit2.Response
 

@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
+import kh.com.pheaktra.developer.basic.android.BuildConfig
 import kh.com.pheaktra.developer.basic.android.R
 import kh.com.pheaktra.developer.basic.android.feature.home.HomeVM
 import kh.com.pheaktra.developer.basic.android.model.base.BaseUiState
@@ -105,6 +106,9 @@ fun ScreenHome(
                         .fillMaxSize()
                         .padding(paddingValues)
                 ) {
+                    item {
+                        Text("Base URL: ${BuildConfig.BASE_URL}")
+                    }
                     items(
                         items = state.data,
                         key = { item -> item.id }

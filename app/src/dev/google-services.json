@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1067335815625",
+    "project_id": "pmandroidappmasterclass",
+    "storage_bucket": "pmandroidappmasterclass.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067335815625:android:c62130af78162b741f5818",
+        "android_client_info": {
+          "package_name": "kh.com.pheaktra.developer.basic.android.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA929tMzhLysUufq5NGZOTDnJpU2U0fK3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

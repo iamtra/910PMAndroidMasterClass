@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.konan.properties.suffix
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -22,6 +24,30 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions += "environment"
+
+    productFlavors {
+        create("dev") {
+            dimension = "environment"
+            applicationIdSuffix = ".dev" // kh.com.pheaktra.developer.basic.android.dev
+            resValue("string", "app_name", "[Dev] Android Master")
+            buildConfigField("String", "BASE_URL", "\"http://www.pheaktra.developer.dev.com/\"")
+        }
+
+        create("uat") {
+            dimension = "environment"
+            applicationIdSuffix = ".uat" // kh.com.pheaktra.developer.basic.android.uat
+            resValue("string", "app_name", "[UAT] Android Master")
+            buildConfigField("String", "BASE_URL", "\"http://www.pheaktra.developer.uat.com/\"")
+        }
+
+        create("prod") {
+            dimension = "environment"
+            applicationIdSuffix = "" // kh.com.pheaktra.developer.basic.android
+            resValue("string", "app_name", "Android Master")
+            buildConfigField("String", "BASE_URL", "\"http://192.168.100.247:3500/\"")
+        }
+    }
     buildTypes {
         debug {
 
@@ -34,19 +60,7 @@ android {
             )
         }
     }
-//    productFlavors {
-//        create("dev") {
-//
-//        }
-//
-//        create("uat") {
-//
-//        }
-//
-//        create("pro") {
-//
-//        }
-//    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -56,8 +70,10 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
+
 
 dependencies {
     implementation(libs.androidx.core.ktx)
@@ -82,12 +98,10 @@ dependencies {
 
     // Retrofit Client
     implementation(libs.retrofit)
-    implementation(libs.retrofit.converter.gson)
     implementation(libs.logging.interceptor)
 
-    implementation(libs.org.jetbrains.kotlinx.serialization.json)
-//    implementation(libs.retrofit2.kotlinx.serialization.converter)
-    implementation(libs.jakewharton.retrofit2.kotlinx.serialization.converter)
+//    implementation(libs.org.jetbrains.kotlinx.serialization.json)
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
 
     implementation(libs.androidx.media3.exoplayer)
     implementation(libs.androidx.media3.ui)
@@ -120,5 +134,5 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    implementation("androidx.tracing:tracing-ktx:1.3.0")
+    implementation(libs.androidx.tracing.ktx)
 }

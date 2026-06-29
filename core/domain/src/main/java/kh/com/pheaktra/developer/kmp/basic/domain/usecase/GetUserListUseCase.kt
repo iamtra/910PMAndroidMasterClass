@@ -28,6 +28,7 @@ class GetUserListUseCase @Inject constructor(
                     )
                 }
             } catch (e: Exception) {
+                e.printStackTrace()
                 emit(
                     BaseUiState.Error(
                         message = e.message ?: "Unknown error",
