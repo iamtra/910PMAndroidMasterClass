@@ -2,12 +2,15 @@ package kh.com.pheaktra.developer.basic.android.navigation
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.material3.Text
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
-import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import androidx.tracing.trace
 import kh.com.pheaktra.developer.basic.android.feature.accessphoto.ScreenAccessMultiplePhoto
@@ -16,25 +19,25 @@ import kh.com.pheaktra.developer.basic.android.feature.badge.badge.ScreenBadge
 import kh.com.pheaktra.developer.basic.android.feature.bottomsheet.ScreenBottomSheet
 import kh.com.pheaktra.developer.basic.android.feature.camera.ScreenCameraLauncher
 import kh.com.pheaktra.developer.basic.android.feature.cards.ScreenCards
+import kh.com.pheaktra.developer.basic.android.feature.carousel.ScreenHorizontalMultiBrowseCarousel
 import kh.com.pheaktra.developer.basic.android.feature.checkbox.ScreenCheckBox
 import kh.com.pheaktra.developer.basic.android.feature.chips.ScreenChips
 import kh.com.pheaktra.developer.basic.android.feature.datepicker.ScreenDatePicker
 import kh.com.pheaktra.developer.basic.android.feature.dialog.ScreenDialog
 import kh.com.pheaktra.developer.basic.android.feature.filledbutton.ScreenFilledButton
-import kh.com.pheaktra.developer.basic.android.feature.carousel.ScreenHorizontalMultiBrowseCarousel
 import kh.com.pheaktra.developer.basic.android.feature.home.home.ScreenHome
 import kh.com.pheaktra.developer.basic.android.feature.iconbuttons.ScreenIconButtons
+import kh.com.pheaktra.developer.basic.android.feature.loading_progress.ScreenScreenLoadingAndProgress
 import kh.com.pheaktra.developer.basic.android.feature.menu.ScreenMenu
-import kh.com.pheaktra.developer.basic.android.feature.segmentedbutton.ScreenMultiChoiceSegmentedButtonRow
 import kh.com.pheaktra.developer.basic.android.feature.navigationbar.ScreenNavigationBar
 import kh.com.pheaktra.developer.basic.android.feature.navigationdrawer.ScreenNavigationDrawer
-import kh.com.pheaktra.developer.basic.android.feature.progress.ScreenProgress
-import kh.com.pheaktra.developer.basic.android.feature.radiobutton.ScreenRadioButton
-import kh.com.pheaktra.developer.basic.android.feature.loading_progress.ScreenScreenLoadingAndProgress
 import kh.com.pheaktra.developer.basic.android.feature.notifcation.notifcation.ScreenNotificationPermission
 import kh.com.pheaktra.developer.basic.android.feature.profile.profile.ScreenProfile
+import kh.com.pheaktra.developer.basic.android.feature.progress.ScreenProgress
+import kh.com.pheaktra.developer.basic.android.feature.radiobutton.ScreenRadioButton
 import kh.com.pheaktra.developer.basic.android.feature.roomdatabase.ScreenCreateTask
 import kh.com.pheaktra.developer.basic.android.feature.roomdatabase.ScreenRoomDatabase
+import kh.com.pheaktra.developer.basic.android.feature.segmentedbutton.ScreenMultiChoiceSegmentedButtonRow
 import kh.com.pheaktra.developer.basic.android.feature.segmentedbutton.ScreenSingleChoiceSegmentedButton
 import kh.com.pheaktra.developer.basic.android.feature.selectmultiplephotos.SelectMultiplePhotos
 import kh.com.pheaktra.developer.basic.android.feature.selectmultiplevidoes.SelectMultipleVideos
@@ -47,14 +50,16 @@ import kh.com.pheaktra.developer.basic.android.feature.switch.ScreenSwitch
 import kh.com.pheaktra.developer.basic.android.feature.tabs.ScreenTabs
 import kh.com.pheaktra.developer.basic.android.feature.textfield.ScreenTextField
 import kh.com.pheaktra.developer.basic.android.feature.timepicker.ScreenTimePicker
-import kh.com.pheaktra.developer.basic.android.feature.tooltips.ScreenToolTips
 import kh.com.pheaktra.developer.basic.android.feature.toolbar.ScreenToolbar
+import kh.com.pheaktra.developer.basic.android.feature.tooltips.ScreenToolTips
 import kh.com.pheaktra.developer.basic.android.feature.topappbar.ScreenTopAppBar
 import kh.com.pheaktra.developer.basic.android.feature.userapi.ScreenUserApi
 
 enum class NotificationType(val value: String) {
     NOTIFICATION("notification-route"),
 }
+
+private const val ANIMATION_DURATION = 300
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun Navigation(route: String?) {
@@ -66,7 +71,7 @@ fun Navigation(route: String?) {
     }
 
     LaunchedEffect(route) {
-        when(route)  {
+        when (route) {
             NotificationType.NOTIFICATION.value -> {
                 backStack.add(NotificationPermissionScreen)
             }
@@ -75,148 +80,266 @@ fun Navigation(route: String?) {
 
     NavDisplay(
         backStack = backStack,
-        onBack = { backStack.removeLastOrNull() },
-        entryProvider = { key ->
-            when (key) {
-                is UserApiScreen -> NavEntry(key) {
-                    ScreenUserApi {
+        onBack = {
+            backStack.removeLastOrNull()
+        },
+        transitionSpec = {
+            slideInHorizontally(
+                initialOffsetX = { fullWidth -> fullWidth },
+                animationSpec = tween(ANIMATION_DURATION)
+            ) togetherWith slideOutHorizontally(
+                targetOffsetX = { fullWidth -> -fullWidth / 3 },
+                animationSpec = tween(ANIMATION_DURATION)
+            )
+        },
+
+        popTransitionSpec = {
+            slideInHorizontally(
+                initialOffsetX = { fullWidth -> -fullWidth / 3 },
+                animationSpec = tween(ANIMATION_DURATION)
+            ) togetherWith slideOutHorizontally(
+                targetOffsetX = { fullWidth -> fullWidth },
+                animationSpec = tween(ANIMATION_DURATION)
+            )
+        },
+
+        entryProvider = entryProvider {
+
+            entry<UserApiScreen> {
+                ScreenUserApi(
+                    onPressBack = {
                         onBack()
                     }
-                }
+                )
+            }
 
-                is HomeScreen -> NavEntry(key) {
-                    ScreenHome(
-                        onClickItem = { key ->
-                            trace("click_item") {
-                                backStack.add(key)
-                            }
-                        },
-                        onClickProfile = { id ->
-                            backStack.add(UserProfile(id))
+            entry<HomeScreen> {
+                ScreenHome(
+                    onClickItem = { screen ->
+                        trace("click_item") {
+                            backStack.add(screen)
                         }
-                    )
-                }
+                    },
+                    onClickProfile = { id ->
+                        backStack.add(UserProfile(id))
+                    }
+                )
+            }
 
-                is BadgeScreen -> NavEntry(key) {
-                    ScreenBadge(
-                        onBack = {
-
-                        }
-                    )
-                }
-
-                is MenuScreen -> NavEntry(key) { ScreenMenu() }
-                is TabsScreen -> NavEntry(key) { ScreenTabs() }
-                is CardsScreen -> NavEntry(key) { ScreenCards() }
-                is ChipsScreen -> NavEntry(key) { ScreenChips() }
-                is DialogScreen -> NavEntry(key) { ScreenDialog() }
-                is SliderScreen -> NavEntry(key) { ScreenSlider() }
-                is SwitchScreen -> NavEntry(key) { ScreenSwitch() }
-                is ToolbarScreen -> NavEntry(key) { ScreenToolbar() }
-                is CheckBoxScreen -> NavEntry(key) { ScreenCheckBox() }
-                is ProgressScreen -> NavEntry(key) { ScreenProgress() }
-                is SnackbarScreen -> NavEntry(key) { ScreenSnackbar() }
-                is ToolTipsScreen -> NavEntry(key) { ScreenToolTips() }
-                is TextFieldScreen -> NavEntry(key) { ScreenTextField() }
-                is TopAppBarScreen -> NavEntry(key) { ScreenTopAppBar() }
-                is DatePickerScreen -> NavEntry(key) { ScreenDatePicker() }
-                is TimePickerScreen -> NavEntry(key) { ScreenTimePicker() }
-                is BottomSheetScreen -> NavEntry(key) { ScreenBottomSheet(onBack = { backStack.removeLastOrNull() }) }
-                is IconButtonsScreen -> NavEntry(key) { ScreenIconButtons() }
-                is RadioButtonScreen -> NavEntry(key) { ScreenRadioButton(onBack = { backStack.removeLastOrNull() }) }
-                is FilledButtonScreen -> NavEntry(key) { ScreenFilledButton() }
-                is NavigationBarScreen -> NavEntry(key) { ScreenNavigationBar() }
-                is NavigationDrawerScreen -> NavEntry(key) { ScreenNavigationDrawer() }
-                is LoadingAndProgressScreen -> NavEntry(key) { ScreenScreenLoadingAndProgress() }
-                is SingleChoiceSegmentedButtonScreen -> NavEntry(key) { ScreenSingleChoiceSegmentedButton() }
-                is HorizontalMultiBrowseCarouselScreen -> NavEntry(key) { ScreenHorizontalMultiBrowseCarousel() }
-                is MultiChoiceSegmentedButtonRowScreen -> NavEntry(key) { ScreenMultiChoiceSegmentedButtonRow() }
-
-                is NotificationPermissionScreen -> NavEntry(key) {
-                    ScreenNotificationPermission(
-                        onBack = {
-                            backStack.removeLastOrNull()
-                        }
-                    )
-                }
-
-                is UserProfile -> NavEntry(key) {
-                    ScreenProfile(
-                        id = key.id,
-                        onBack = {
-                            backStack.removeLastOrNull()
-                        }
-                    )
-                }
-
-                is AccessPhotoScreen -> NavEntry(key) {
-                    ScreenAccessPhoto()
-                }
-
-                is AccessPhotoMultipleScreen -> NavEntry(key) {
-                    ScreenAccessMultiplePhoto()
-                }
-
-                is SelectSinglePhots -> NavEntry(key) {
-                    SelectSinglePhoto {
+            entry<BadgeScreen> {
+                ScreenBadge(
+                    onBack = {
                         onBack()
                     }
-                }
+                )
+            }
 
-                is SelectMultiplePhots -> NavEntry(key) {
-                    SelectMultiplePhotos {
+            entry<MenuScreen> {
+                ScreenMenu()
+            }
+
+            entry<TabsScreen> {
+                ScreenTabs()
+            }
+
+            entry<CardsScreen> {
+                ScreenCards()
+            }
+
+            entry<ChipsScreen> {
+                ScreenChips()
+            }
+
+            entry<DialogScreen> {
+                ScreenDialog()
+            }
+
+            entry<SliderScreen> {
+                ScreenSlider()
+            }
+
+            entry<SwitchScreen> {
+                ScreenSwitch()
+            }
+
+            entry<ToolbarScreen> {
+                ScreenToolbar()
+            }
+
+            entry<CheckBoxScreen> {
+                ScreenCheckBox()
+            }
+
+            entry<ProgressScreen> {
+                ScreenProgress()
+            }
+
+            entry<SnackbarScreen> {
+                ScreenSnackbar()
+            }
+
+            entry<ToolTipsScreen> {
+                ScreenToolTips()
+            }
+
+            entry<TextFieldScreen> {
+                ScreenTextField()
+            }
+
+            entry<TopAppBarScreen> {
+                ScreenTopAppBar()
+            }
+
+            entry<DatePickerScreen> {
+                ScreenDatePicker()
+            }
+
+            entry<TimePickerScreen> {
+                ScreenTimePicker()
+            }
+
+            entry<BottomSheetScreen> {
+                ScreenBottomSheet(
+                    onBack = {
                         onBack()
                     }
-                }
+                )
+            }
 
-                is SelectSingleVideos -> NavEntry(key) {
-                    SelectSingleVideo {
+            entry<IconButtonsScreen> {
+                ScreenIconButtons()
+            }
+
+            entry<RadioButtonScreen> {
+                ScreenRadioButton(
+                    onBack = {
                         onBack()
                     }
-                }
+                )
+            }
 
-                is SelectMultipleVideos -> NavEntry(key) {
-                    SelectMultipleVideos {
+            entry<FilledButtonScreen> {
+                ScreenFilledButton()
+            }
+
+            entry<NavigationBarScreen> {
+                ScreenNavigationBar()
+            }
+
+            entry<NavigationDrawerScreen> {
+                ScreenNavigationDrawer()
+            }
+
+            entry<LoadingAndProgressScreen> {
+                ScreenScreenLoadingAndProgress()
+            }
+
+            entry<SingleChoiceSegmentedButtonScreen> {
+                ScreenSingleChoiceSegmentedButton()
+            }
+
+            entry<HorizontalMultiBrowseCarouselScreen> {
+                ScreenHorizontalMultiBrowseCarousel()
+            }
+
+            entry<MultiChoiceSegmentedButtonRowScreen> {
+                ScreenMultiChoiceSegmentedButtonRow()
+            }
+
+            entry<NotificationPermissionScreen> {
+                ScreenNotificationPermission(
+                    onBack = {
                         onBack()
                     }
-                }
+                )
+            }
 
-                is SelectPhotoAndVideos -> NavEntry(key) {
-                    ScreenSelectPhotoAndVideo {
+            entry<UserProfile> { route ->
+                ScreenProfile(
+                    id = route.id,
+                    onBack = {
                         onBack()
                     }
-                }
+                )
+            }
 
-                is CameraLauncher -> NavEntry(key) {
-                    ScreenCameraLauncher {
+            entry<AccessPhotoScreen> {
+                ScreenAccessPhoto()
+            }
+
+            entry<AccessPhotoMultipleScreen> {
+                ScreenAccessMultiplePhoto()
+            }
+
+            entry<SelectSinglePhots> {
+                SelectSinglePhoto(
+                    onBack = {
                         onBack()
                     }
-                }
+                )
+            }
 
-                is RoomDatabaseScreen -> NavEntry(key) {
-                    ScreenRoomDatabase(
-                        onBack = {
-                            onBack()
-                        },
-                        onCreateTask = {
-                            backStack.add(CreateTaskScreen(null))
-                        },
-                        onGoToUpdateTask = { task ->
-                            backStack.add(CreateTaskScreen(task))
-                        }
-                    )
-                }
+            entry<SelectMultiplePhots> {
+                SelectMultiplePhotos(
+                    onBack = {
+                        onBack()
+                    }
+                )
+            }
 
-                is CreateTaskScreen -> NavEntry(key) {
-                    ScreenCreateTask(
-                        taskData = key.task,
-                        onBack = {
-                            onBack()
-                        },
-                    )
-                }
+            entry<SelectSingleVideos> {
+                SelectSingleVideo(
+                    onBack = {
+                        onBack()
+                    }
+                )
+            }
 
-                else -> NavEntry(Unit) { Text("Unknown route") }
+            entry<SelectMultipleVideos> {
+                SelectMultipleVideos(
+                    onBack = {
+                        onBack()
+                    }
+                )
+            }
+
+            entry<SelectPhotoAndVideos> {
+                ScreenSelectPhotoAndVideo(
+                    onBack = {
+                        onBack()
+                    }
+                )
+            }
+
+            entry<CameraLauncher> {
+                ScreenCameraLauncher(
+                    onBack = {
+                        onBack()
+                    }
+                )
+            }
+
+            entry<RoomDatabaseScreen> {
+                ScreenRoomDatabase(
+                    onBack = {
+                        onBack()
+                    },
+                    onCreateTask = {
+                        backStack.add(CreateTaskScreen(null))
+                    },
+                    onGoToUpdateTask = { task ->
+                        backStack.add(CreateTaskScreen(task))
+                    }
+                )
+            }
+
+            entry<CreateTaskScreen> { route ->
+                ScreenCreateTask(
+                    taskData = route.task,
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
         }
     )
