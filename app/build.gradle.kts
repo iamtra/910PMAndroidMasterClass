@@ -118,6 +118,9 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.messaging)
 
+    // Play service
+    implementation(libs.play.services.location)
+
     // Local module
     implementation(project(":core"))
     implementation(project(":core:data"))

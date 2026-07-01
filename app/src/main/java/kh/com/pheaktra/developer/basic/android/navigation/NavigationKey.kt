@@ -56,3 +56,6 @@ data class CreateTaskScreen(val task: TaskModel? = null)
 
 @Serializable
 data class UserProfile(val id: Int)
+
+
+data object GetLocation

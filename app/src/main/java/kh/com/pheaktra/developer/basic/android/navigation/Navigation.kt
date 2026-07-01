@@ -28,6 +28,7 @@ import kh.com.pheaktra.developer.basic.android.feature.filledbutton.ScreenFilled
 import kh.com.pheaktra.developer.basic.android.feature.home.home.ScreenHome
 import kh.com.pheaktra.developer.basic.android.feature.iconbuttons.ScreenIconButtons
 import kh.com.pheaktra.developer.basic.android.feature.loading_progress.ScreenScreenLoadingAndProgress
+import kh.com.pheaktra.developer.basic.android.feature.location.ScreenLocation
 import kh.com.pheaktra.developer.basic.android.feature.menu.ScreenMenu
 import kh.com.pheaktra.developer.basic.android.feature.navigationbar.ScreenNavigationBar
 import kh.com.pheaktra.developer.basic.android.feature.navigationdrawer.ScreenNavigationDrawer
@@ -336,6 +337,14 @@ fun Navigation(route: String?) {
             entry<CreateTaskScreen> { route ->
                 ScreenCreateTask(
                     taskData = route.task,
+                    onBack = {
+                        onBack()
+                    }
+                )
+            }
+
+            entry<GetLocation> { route ->
+                ScreenLocation(
                     onBack = {
                         onBack()
                     }

@@ -12,6 +12,7 @@ import kh.com.pheaktra.developer.basic.android.navigation.ChipsScreen
 import kh.com.pheaktra.developer.basic.android.navigation.DatePickerScreen
 import kh.com.pheaktra.developer.basic.android.navigation.DialogScreen
 import kh.com.pheaktra.developer.basic.android.navigation.FilledButtonScreen
+import kh.com.pheaktra.developer.basic.android.navigation.GetLocation
 import kh.com.pheaktra.developer.basic.android.navigation.HorizontalMultiBrowseCarouselScreen
 import kh.com.pheaktra.developer.basic.android.navigation.IconButtonsScreen
 import kh.com.pheaktra.developer.basic.android.navigation.LoadingAndProgressScreen
@@ -312,6 +313,13 @@ class HomeRepository {
             description = "Local database storage with CRUD operations, relationships, and offline data persistence",
             route = RoomDatabaseScreen,
             iconUrl = "https://img.icons8.com/color/96/database.png"
+        ),
+        ComponentModel(
+            id = 39,
+            title = "Get Location",
+            description = "Access the device's current location with GPS, permissions, and Fused Location Provider.",
+            route = GetLocation,
+            iconUrl = "https://img.icons8.com/color/96/marker.png"
         )
     )
 
