@@ -10,11 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import androidx.core.net.toUri
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import androidx.tracing.trace
 import kh.com.pheaktra.developer.basic.android.feature.accessphoto.ScreenAccessMultiplePhoto
 import kh.com.pheaktra.developer.basic.android.feature.accessphoto.ScreenAccessPhoto
+import kh.com.pheaktra.developer.basic.android.feature.androidxcamera.ScreenAndroidXCamera
+import kh.com.pheaktra.developer.basic.android.feature.androidxcamera.ScreenPreviewImage
 import kh.com.pheaktra.developer.basic.android.feature.badge.badge.ScreenBadge
 import kh.com.pheaktra.developer.basic.android.feature.bottomsheet.ScreenBottomSheet
 import kh.com.pheaktra.developer.basic.android.feature.camera.ScreenCameraLauncher
@@ -345,6 +348,26 @@ fun Navigation(route: String?) {
 
             entry<GetLocation> { route ->
                 ScreenLocation(
+                    onBack = {
+                        onBack()
+                    }
+                )
+            }
+
+            entry<AndroidXCamera> { route ->
+                ScreenAndroidXCamera(
+                    onBack = {
+                        onBack()
+                    },
+                    onPreview = { imageUri ->
+                        backStack.add(PreviewImage(imageUri = imageUri.toString()))
+                    }
+                )
+            }
+
+            entry<PreviewImage> { route ->
+                ScreenPreviewImage(
+                    imageUri = route.imageUri.toUri(),
                     onBack = {
                         onBack()
                     }

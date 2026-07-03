@@ -121,6 +121,13 @@ dependencies {
     // Play service
     implementation(libs.play.services.location)
 
+    // CameraX
+//    implementation(platform(libs.androidx.camera.bom))
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
+
     // Local module
     implementation(project(":core"))
     implementation(project(":core:data"))

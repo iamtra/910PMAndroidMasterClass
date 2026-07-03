@@ -3,6 +3,7 @@ package kh.com.pheaktra.developer.basic.android.feature.home.home
 import kh.com.pheaktra.developer.basic.android.model.base.ComponentModel
 import kh.com.pheaktra.developer.basic.android.navigation.AccessPhotoMultipleScreen
 import kh.com.pheaktra.developer.basic.android.navigation.AccessPhotoScreen
+import kh.com.pheaktra.developer.basic.android.navigation.AndroidXCamera
 import kh.com.pheaktra.developer.basic.android.navigation.BadgeScreen
 import kh.com.pheaktra.developer.basic.android.navigation.BottomSheetScreen
 import kh.com.pheaktra.developer.basic.android.navigation.CameraLauncher
@@ -320,6 +321,13 @@ class HomeRepository {
             description = "Access the device's current location with GPS, permissions, and Fused Location Provider.",
             route = GetLocation,
             iconUrl = "https://img.icons8.com/color/96/marker.png"
+        ),
+        ComponentModel(
+            id = 40,
+            title = "AndroidX Camera",
+            description = "Capture photos and preview the camera using CameraX with runtime permissions and Jetpack Compose integration.",
+            route = AndroidXCamera,
+            iconUrl = "https://img.icons8.com/color/96/camera.png"
         )
     )
 

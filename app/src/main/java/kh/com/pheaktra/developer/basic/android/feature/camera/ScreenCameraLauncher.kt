@@ -5,7 +5,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -19,9 +18,7 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -47,7 +44,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import kh.com.pheaktra.developer.basic.android.R
-import kh.com.pheaktra.developer.basic.android.feature.notifcation.notifcation.createNotificationChannel
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import java.io.File
 import java.io.FileOutputStream

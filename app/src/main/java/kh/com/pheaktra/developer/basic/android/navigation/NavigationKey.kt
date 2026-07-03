@@ -1,5 +1,6 @@
 package kh.com.pheaktra.developer.basic.android.navigation
 
+import android.net.Uri
 import kh.com.pheaktra.developer.kmp.basic.domain.model.TaskModel
 import kotlinx.serialization.Serializable
 
@@ -59,3 +60,10 @@ data class UserProfile(val id: Int)
 
 
 data object GetLocation
+
+data object AndroidXCamera
+
+@Serializable
+data class PreviewImage(
+    val imageUri: String
+)
