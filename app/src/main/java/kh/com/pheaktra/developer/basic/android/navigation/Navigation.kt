@@ -19,6 +19,7 @@ import kh.com.pheaktra.developer.basic.android.feature.accessphoto.ScreenAccessP
 import kh.com.pheaktra.developer.basic.android.feature.androidxcamera.ScreenAndroidXCamera
 import kh.com.pheaktra.developer.basic.android.feature.androidxcamera.ScreenPreviewImage
 import kh.com.pheaktra.developer.basic.android.feature.badge.badge.ScreenBadge
+import kh.com.pheaktra.developer.basic.android.feature.biometric.ScreenBiometric
 import kh.com.pheaktra.developer.basic.android.feature.bottomsheet.ScreenBottomSheet
 import kh.com.pheaktra.developer.basic.android.feature.camera.ScreenCameraLauncher
 import kh.com.pheaktra.developer.basic.android.feature.cards.ScreenCards
@@ -30,6 +31,7 @@ import kh.com.pheaktra.developer.basic.android.feature.dialog.ScreenDialog
 import kh.com.pheaktra.developer.basic.android.feature.filledbutton.ScreenFilledButton
 import kh.com.pheaktra.developer.basic.android.feature.home.home.ScreenHome
 import kh.com.pheaktra.developer.basic.android.feature.iconbuttons.ScreenIconButtons
+import kh.com.pheaktra.developer.basic.android.feature.internetconnection.ScreenInternetConnection
 import kh.com.pheaktra.developer.basic.android.feature.loading_progress.ScreenScreenLoadingAndProgress
 import kh.com.pheaktra.developer.basic.android.feature.location.ScreenLocation
 import kh.com.pheaktra.developer.basic.android.feature.menu.ScreenMenu
@@ -368,6 +370,21 @@ fun Navigation(route: String?) {
             entry<PreviewImage> { route ->
                 ScreenPreviewImage(
                     imageUri = route.imageUri.toUri(),
+                    onBack = {
+                        onBack()
+                    }
+                )
+            }
+
+            entry<NetworkConnectivity> {
+                ScreenInternetConnection(
+                    onBack = {
+                        onBack()
+                    }
+                )
+            }
+            entry<Biometric> {
+                ScreenBiometric(
                     onBack = {
                         onBack()
                     }

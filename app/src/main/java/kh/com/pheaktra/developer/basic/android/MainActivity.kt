@@ -7,28 +7,25 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.LaunchedEffect
 import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
-import kh.com.pheaktra.developer.basic.android.feature.notifcation.notifcation.createNotificationChannel
 import kh.com.pheaktra.developer.basic.android.navigation.Navigation
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kh.com.pheaktra.developer.basic.android.util.LoadingContent
 import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
-import kh.com.pheaktra.developer.kmp.basic.core.Engine
-import java.time.LocalDateTime
 
 /**
  * Multi modulization in android
  */
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {

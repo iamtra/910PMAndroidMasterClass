@@ -11,9 +11,12 @@ package kh.com.pheaktra.developer.basic.android
  * 3. Interact with Mobile Hardware (July 04, 2026)
  *  - Select media from Gallery/Photos and File Explorer (Done)
  *  - GPS location (Done)
- *  - Camerax + runtime permission
- *  - Get Wi-Fi state
- *  - fingerprint Sensor
+ *  - Camerax + runtime permission (Done)
+ *  - Get Wi-Fi/Internet connection state (Done, but need to explain again )
+ *  - fingerprint Sensor (Done)
  *  - Screen Density
+ *  * Broadcast receiver
  *  - Battery
+ *  - Airplane mode receiver
+ *  - Charging receiver
  */

@@ -5,6 +5,7 @@ import kh.com.pheaktra.developer.basic.android.navigation.AccessPhotoMultipleScr
 import kh.com.pheaktra.developer.basic.android.navigation.AccessPhotoScreen
 import kh.com.pheaktra.developer.basic.android.navigation.AndroidXCamera
 import kh.com.pheaktra.developer.basic.android.navigation.BadgeScreen
+import kh.com.pheaktra.developer.basic.android.navigation.Biometric
 import kh.com.pheaktra.developer.basic.android.navigation.BottomSheetScreen
 import kh.com.pheaktra.developer.basic.android.navigation.CameraLauncher
 import kh.com.pheaktra.developer.basic.android.navigation.CardsScreen
@@ -21,6 +22,7 @@ import kh.com.pheaktra.developer.basic.android.navigation.MenuScreen
 import kh.com.pheaktra.developer.basic.android.navigation.MultiChoiceSegmentedButtonRowScreen
 import kh.com.pheaktra.developer.basic.android.navigation.NavigationBarScreen
 import kh.com.pheaktra.developer.basic.android.navigation.NavigationDrawerScreen
+import kh.com.pheaktra.developer.basic.android.navigation.NetworkConnectivity
 import kh.com.pheaktra.developer.basic.android.navigation.NotificationPermissionScreen
 import kh.com.pheaktra.developer.basic.android.navigation.ProgressScreen
 import kh.com.pheaktra.developer.basic.android.navigation.RadioButtonScreen
@@ -328,6 +330,20 @@ class HomeRepository {
             description = "Capture photos and preview the camera using CameraX with runtime permissions and Jetpack Compose integration.",
             route = AndroidXCamera,
             iconUrl = "https://img.icons8.com/color/96/camera.png"
+        ),
+        ComponentModel(
+            id = 41,
+            title = "Internet Connection",
+            description = "Monitor network connectivity in real time and detect when the device connects to or disconnects from the internet.",
+            route = NetworkConnectivity,
+            iconUrl = "https://img.icons8.com/color/96/wifi.png"
+        ),
+        ComponentModel(
+            id = 42,
+            title = "Biometric Authentication",
+            description = "Authenticate users securely with fingerprint, face recognition, or other supported biometric methods on the device.",
+            route = Biometric,
+            iconUrl = "https://img.icons8.com/color/96/fingerprint.png"
         )
     )
 

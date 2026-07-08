@@ -67,3 +67,7 @@ data object AndroidXCamera
 data class PreviewImage(
     val imageUri: String
 )
+
+data object NetworkConnectivity
+
+data object Biometric

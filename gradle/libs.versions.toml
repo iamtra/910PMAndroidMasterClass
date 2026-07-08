@@ -1,5 +1,6 @@
 [versions]
 agp = "9.1.1"
+biometricKtx = "1.4.0-alpha02"
 coilCompose = "2.7.0"
 firebaseBom = "34.15.0"
 kotlin = "2.2.10"
@@ -14,6 +15,7 @@ cameraxVersion = "1.6.0"
 
 hilt = "2.59.2"
 ksp = "2.3.4"
+materialIconsExtended = "1.7.8"
 playServicesLocation = "21.4.0"
 room = "2.8.4"
 
@@ -36,6 +38,8 @@ material = "1.14.0"
 tracingKtx = "1.3.0"
 
 [libraries]
+androidx-biometric-ktx = { module = "androidx.biometric:biometric-ktx", version.ref = "biometricKtx" }
+androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3Exoplayer" }
 androidx-media3-ui = { module = "androidx.media3:media3-ui", version.ref = "media3Exoplayer" }

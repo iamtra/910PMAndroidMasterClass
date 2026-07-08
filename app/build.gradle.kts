@@ -107,6 +107,7 @@ dependencies {
     implementation(libs.androidx.media3.ui)
 
     implementation(libs.hilt.android)
+    implementation(libs.androidx.appcompat)
     ksp(libs.hilt.compiler)
 
     // Room database
@@ -121,12 +122,18 @@ dependencies {
     // Play service
     implementation(libs.play.services.location)
 
+    // Icon
+    implementation(libs.androidx.compose.material.icons.extended)
+
     // CameraX
 //    implementation(platform(libs.androidx.camera.bom))
     implementation(libs.androidx.camera.core)
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
+
+    // Fingerprint authentication
+    implementation(libs.androidx.biometric.ktx)
 
     // Local module
     implementation(project(":core"))
