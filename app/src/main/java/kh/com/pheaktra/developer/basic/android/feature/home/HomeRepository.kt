@@ -17,6 +17,7 @@ import kh.com.pheaktra.developer.basic.android.navigation.FilledButtonScreen
 import kh.com.pheaktra.developer.basic.android.navigation.GetLocation
 import kh.com.pheaktra.developer.basic.android.navigation.HorizontalMultiBrowseCarouselScreen
 import kh.com.pheaktra.developer.basic.android.navigation.IconButtonsScreen
+import kh.com.pheaktra.developer.basic.android.navigation.InfoScreen
 import kh.com.pheaktra.developer.basic.android.navigation.LoadingAndProgressScreen
 import kh.com.pheaktra.developer.basic.android.navigation.MenuScreen
 import kh.com.pheaktra.developer.basic.android.navigation.MultiChoiceSegmentedButtonRowScreen
@@ -344,6 +345,13 @@ class HomeRepository {
             description = "Authenticate users securely with fingerprint, face recognition, or other supported biometric methods on the device.",
             route = Biometric,
             iconUrl = "https://img.icons8.com/color/96/fingerprint.png"
+        ),
+        ComponentModel(
+            id = 43,
+            title = "Screen Information",
+            description = "Display device screen information, including screen size, resolution, density, orientation, and other display metrics.",
+            route = InfoScreen,
+            iconUrl = "https://img.icons8.com/color/96/monitor.png"
         )
     )
 

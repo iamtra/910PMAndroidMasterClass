@@ -71,3 +71,5 @@ data class PreviewImage(
 data object NetworkConnectivity
 
 data object Biometric
+
+data object InfoScreen

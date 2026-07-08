@@ -43,6 +43,7 @@ import kh.com.pheaktra.developer.basic.android.feature.progress.ScreenProgress
 import kh.com.pheaktra.developer.basic.android.feature.radiobutton.ScreenRadioButton
 import kh.com.pheaktra.developer.basic.android.feature.roomdatabase.ScreenCreateTask
 import kh.com.pheaktra.developer.basic.android.feature.roomdatabase.ScreenRoomDatabase
+import kh.com.pheaktra.developer.basic.android.feature.screeninfo.ScreenInfoScreen
 import kh.com.pheaktra.developer.basic.android.feature.segmentedbutton.ScreenMultiChoiceSegmentedButtonRow
 import kh.com.pheaktra.developer.basic.android.feature.segmentedbutton.ScreenSingleChoiceSegmentedButton
 import kh.com.pheaktra.developer.basic.android.feature.selectmultiplephotos.SelectMultiplePhotos
@@ -385,6 +386,13 @@ fun Navigation(route: String?) {
             }
             entry<Biometric> {
                 ScreenBiometric(
+                    onBack = {
+                        onBack()
+                    }
+                )
+            }
+            entry<InfoScreen> {
+                ScreenInfoScreen(
                     onBack = {
                         onBack()
                     }
