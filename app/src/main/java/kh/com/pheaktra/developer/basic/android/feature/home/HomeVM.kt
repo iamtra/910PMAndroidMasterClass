@@ -2,7 +2,6 @@ package kh.com.pheaktra.developer.basic.android.feature.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kh.com.pheaktra.developer.basic.android.feature.home.home.HomeRepository
 import kh.com.pheaktra.developer.basic.android.model.base.BaseUiState
 import kh.com.pheaktra.developer.basic.android.model.base.ComponentModel
 import kotlinx.coroutines.cancel

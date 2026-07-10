@@ -21,6 +21,8 @@ import kh.com.pheaktra.developer.basic.android.feature.androidxcamera.ScreenPrev
 import kh.com.pheaktra.developer.basic.android.feature.badge.badge.ScreenBadge
 import kh.com.pheaktra.developer.basic.android.feature.biometric.ScreenBiometric
 import kh.com.pheaktra.developer.basic.android.feature.bottomsheet.ScreenBottomSheet
+import kh.com.pheaktra.developer.basic.android.feature.broadcastreceiver.ScreenBroadcastReceiverAirPlanMode
+import kh.com.pheaktra.developer.basic.android.feature.broadcastreceiver.ScreenBroadcastReceiverBattery
 import kh.com.pheaktra.developer.basic.android.feature.camera.ScreenCameraLauncher
 import kh.com.pheaktra.developer.basic.android.feature.cards.ScreenCards
 import kh.com.pheaktra.developer.basic.android.feature.carousel.ScreenHorizontalMultiBrowseCarousel
@@ -393,6 +395,20 @@ fun Navigation(route: String?) {
             }
             entry<InfoScreen> {
                 ScreenInfoScreen(
+                    onBack = {
+                        onBack()
+                    }
+                )
+            }
+            entry<BroadcastReceiverAirPlanMode> {
+                ScreenBroadcastReceiverAirPlanMode(
+                    onBack = {
+                        onBack()
+                    }
+                )
+            }
+            entry<BroadcastReceiverBattery> {
+                ScreenBroadcastReceiverBattery(
                     onBack = {
                         onBack()
                     }

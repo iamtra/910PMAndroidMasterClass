@@ -51,6 +51,10 @@
 
         </service>
 
+<!--        <receiver android:name=".service.fcm.MyFirebaseMessagingService">-->
+
+<!--        </receiver>-->
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -61,6 +65,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+
 
     </application>
 

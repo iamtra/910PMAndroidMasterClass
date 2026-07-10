@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.android.feature.home.home
+package kh.com.pheaktra.developer.basic.android.feature.home
 
 import kh.com.pheaktra.developer.basic.android.model.base.ComponentModel
 import kh.com.pheaktra.developer.basic.android.navigation.AccessPhotoMultipleScreen
@@ -7,6 +7,8 @@ import kh.com.pheaktra.developer.basic.android.navigation.AndroidXCamera
 import kh.com.pheaktra.developer.basic.android.navigation.BadgeScreen
 import kh.com.pheaktra.developer.basic.android.navigation.Biometric
 import kh.com.pheaktra.developer.basic.android.navigation.BottomSheetScreen
+import kh.com.pheaktra.developer.basic.android.navigation.BroadcastReceiverAirPlanMode
+import kh.com.pheaktra.developer.basic.android.navigation.BroadcastReceiverBattery
 import kh.com.pheaktra.developer.basic.android.navigation.CameraLauncher
 import kh.com.pheaktra.developer.basic.android.navigation.CardsScreen
 import kh.com.pheaktra.developer.basic.android.navigation.CheckBoxScreen
@@ -352,6 +354,20 @@ class HomeRepository {
             description = "Display device screen information, including screen size, resolution, density, orientation, and other display metrics.",
             route = InfoScreen,
             iconUrl = "https://img.icons8.com/color/96/monitor.png"
+        ),
+        ComponentModel(
+            id = 44,
+            title = "Broadcast Receiver Airplane Mode",
+            description = "Monitor airplane mode changes in real time and detect when the user turns airplane mode on or off.",
+            route = BroadcastReceiverAirPlanMode,
+            iconUrl = "https://img.icons8.com/color/96/airplane-mode-on.png"
+        ),
+        ComponentModel(
+            id = 45,
+            title = "Battery Broadcast Receiver",
+            description = "Monitor battery status changes in real time, including battery level, charging state, and power connection events.",
+            route = BroadcastReceiverBattery,
+            iconUrl = "https://img.icons8.com/color/96/full-battery.png"
         )
     )
 

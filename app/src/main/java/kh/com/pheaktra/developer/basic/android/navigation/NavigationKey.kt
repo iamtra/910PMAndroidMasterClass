@@ -73,3 +73,7 @@ data object NetworkConnectivity
 data object Biometric
 
 data object InfoScreen
+
+data object BroadcastReceiverAirPlanMode
+
+data object BroadcastReceiverBattery

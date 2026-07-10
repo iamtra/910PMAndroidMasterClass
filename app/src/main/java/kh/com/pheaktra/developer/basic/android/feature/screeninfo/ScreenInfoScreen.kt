@@ -26,6 +26,7 @@ import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import android.provider.Settings
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 
@@ -38,6 +39,14 @@ fun ScreenInfoScreen(
     val screenInfo = remember {
         getScreenInfo(context)
     }
+
+    DisposableEffect(Unit) {
+        println("=====> Dispose effect enter screen")
+        onDispose {
+            println("=====> Dispose effect Leave screen")
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
