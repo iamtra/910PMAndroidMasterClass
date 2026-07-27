@@ -32,7 +32,9 @@ import kh.com.pheaktra.developer.basic.android.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenIconButtons() {
+fun ScreenIconButtons(
+    onBack: () -> Unit = {}
+) {
     val interactionSource = remember { MutableInteractionSource() }
 
     Scaffold(
@@ -43,7 +45,7 @@ fun ScreenIconButtons() {
                 navigationIcon = {
                     FilledTonalIconButton(
                         onClick = {
-                            println("Button is disabled")
+                            onBack()
                         }
                     ) {
                         Icon(
@@ -81,10 +83,9 @@ fun ScreenIconButtons() {
 
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-//                    navigationIconContentColor = MaterialTheme.colorScheme.error,
-//                    actionIconContentColor = MaterialTheme.colorScheme.error,
-//                    titleContentColor = MaterialTheme.colorScheme.error
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         }

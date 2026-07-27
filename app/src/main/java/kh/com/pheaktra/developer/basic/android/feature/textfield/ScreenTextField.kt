@@ -60,7 +60,9 @@ import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenTextField() {
+fun ScreenTextField(
+    onBack: () -> Unit = {}
+) {
     var textValue1 by remember { mutableStateOf("") }
     var textValue2 by remember { mutableStateOf("") }
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -77,7 +79,9 @@ fun ScreenTextField() {
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            onBack()
+                        }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_menu_24),
@@ -101,7 +105,9 @@ fun ScreenTextField() {
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         },

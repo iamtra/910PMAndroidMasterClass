@@ -45,7 +45,9 @@ import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenHorizontalMultiBrowseCarousel() {
+fun ScreenHorizontalMultiBrowseCarousel(
+    onBack: () -> Unit = {}
+) {
 
     data class ItemModel(
         val id: Int,
@@ -108,13 +110,27 @@ fun ScreenHorizontalMultiBrowseCarousel() {
     Scaffold(
         modifier = Modifier.navigationBarsPadding(), topBar = {
             LargeTopAppBar(
+                navigationIcon = {
+                    IconButton(
+                        onClick = {
+                            onBack()
+                        }
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_arrow_back),
+                            contentDescription = null
+                        )
+                    }
+                },
                 title = {
                     Text(
                         text = "Carousel Compnent"
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         }) { padding ->

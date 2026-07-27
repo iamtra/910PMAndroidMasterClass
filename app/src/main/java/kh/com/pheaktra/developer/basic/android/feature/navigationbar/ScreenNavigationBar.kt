@@ -52,7 +52,9 @@ import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenNavigationBar() {
+fun ScreenNavigationBar(
+    onBack: () -> Unit = {}
+) {
     data class NavigationBarItemModel(
         val id: Int,
         @DrawableRes val icon: Int,
@@ -88,7 +90,9 @@ fun ScreenNavigationBar() {
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            onBack()
+                        }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_menu_24),
@@ -112,7 +116,9 @@ fun ScreenNavigationBar() {
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         },

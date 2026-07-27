@@ -59,7 +59,7 @@ import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
 @Composable
 fun ScreenUserApi(
     userApiVM: UserApiVM = viewModel(),
-    onPressBack: () -> Unit
+    onBack: () -> Unit
 ) {
     val context = LocalContext.current
 
@@ -237,7 +237,7 @@ fun ScreenUserApi(
                 navigationIcon = {
                     IconButton(
                         onClick = {
-                            onPressBack()
+                            onBack()
                         }
                     ) {
                         Icon(
@@ -262,7 +262,9 @@ fun ScreenUserApi(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         },

@@ -48,7 +48,9 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenToolTips() {
+fun ScreenToolTips(
+    onBack: () -> Unit = {}
+) {
     val state = rememberTooltipState()
     val scope = rememberCoroutineScope()
 
@@ -73,7 +75,9 @@ fun ScreenToolTips() {
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            onBack()
+                        }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_menu_24),
@@ -97,7 +101,9 @@ fun ScreenToolTips() {
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         },

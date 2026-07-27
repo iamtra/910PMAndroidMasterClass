@@ -57,7 +57,9 @@ import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenChips() {
+fun ScreenChips(
+    onBack: () -> Unit = {}
+) {
     data class CheckedModel(
         val id: Int,
         var checked: Boolean,
@@ -215,7 +217,7 @@ fun ScreenChips() {
                 navigationIcon = {
                     IconButton(
                         onClick = {
-
+                            onBack()
                         }
                     ) {
                         Icon(
@@ -240,10 +242,9 @@ fun ScreenChips() {
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-//                    navigationIconContentColor = MaterialTheme.colorScheme.error,
-//                    actionIconContentColor = MaterialTheme.colorScheme.error,
-//                    titleContentColor = MaterialTheme.colorScheme.error
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         },

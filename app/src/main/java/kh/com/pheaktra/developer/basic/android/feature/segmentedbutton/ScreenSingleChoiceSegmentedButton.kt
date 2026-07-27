@@ -33,23 +33,36 @@ import kh.com.pheaktra.developer.basic.android.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenSingleChoiceSegmentedButton() {
+fun ScreenSingleChoiceSegmentedButton(
+    onBack: () -> Unit = {}
+) {
     var selectedIndex by remember { mutableIntStateOf(0) }
     val options = listOf("Day", "Month", "Week")
 
     Scaffold(
         modifier = Modifier.navigationBarsPadding(), topBar = {
             LargeTopAppBar(
+                navigationIcon = {
+                    IconButton(
+                        onClick = {
+                            onBack()
+                        }
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_arrow_back),
+                            contentDescription = null
+                        )
+                    }
+                },
                 title = {
                     Text(
                         text = "Single choice segment button"
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-//                    navigationIconContentColor = MaterialTheme.colorScheme.error,
-//                    actionIconContentColor = MaterialTheme.colorScheme.error,
-//                    titleContentColor = MaterialTheme.colorScheme.error
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         }

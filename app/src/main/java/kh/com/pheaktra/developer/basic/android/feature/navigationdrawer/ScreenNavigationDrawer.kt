@@ -59,7 +59,9 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenNavigationDrawer() {
+fun ScreenNavigationDrawer(
+    onBack: () -> Unit = {}
+) {
     data class NavigationBarItemModel(
         val id: Int,
         @DrawableRes val icon: Int,
@@ -120,13 +122,7 @@ fun ScreenNavigationDrawer() {
                     navigationIcon = {
                         IconButton(
                             onClick = {
-                                scope.launch {
-                                    if (drawerState.isOpen) {
-                                        drawerState.close()
-                                    } else {
-                                        drawerState.open()
-                                    }
-                                }
+                                onBack()
                             }
                         ) {
                             Icon(
@@ -141,7 +137,9 @@ fun ScreenNavigationDrawer() {
                         )
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                     )
                 )
             },

@@ -44,7 +44,9 @@ import kh.com.pheaktra.developer.basic.android.storage.accountList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenHorizontalPager() {
+fun ScreenHorizontalPager(
+    onBack: () -> Unit = {}
+) {
     val accounts = accountList
     val pagerState = rememberPagerState(pageCount = { accounts.size })
 
@@ -58,18 +60,17 @@ fun ScreenHorizontalPager() {
                     Text("Horzontal Pager")
                 },
                 navigationIcon = {
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = { onBack() }) {
                         Icon(
                             imageVector = Icons.Default.Menu,
                             contentDescription = "Localized description"
                         )
                     }
                 },
-                colors = TopAppBarDefaults.largeTopAppBarColors(
+                colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
-                    actionIconContentColor = Color.White,
-                    navigationIconContentColor = Color.White,
-                    titleContentColor = Color.White
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 ),
                 actions = {
                     IconButton(

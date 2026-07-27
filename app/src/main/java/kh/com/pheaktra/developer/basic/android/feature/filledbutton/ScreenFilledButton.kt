@@ -42,7 +42,9 @@ import kh.com.pheaktra.developer.basic.android.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenFilledButton() {
+fun ScreenFilledButton(
+    onBack: () -> Unit = {}
+) {
     var text by remember { mutableStateOf("Hello world !") }
     var isChecked by remember { mutableStateOf(false) }
 
@@ -53,7 +55,7 @@ fun ScreenFilledButton() {
                 navigationIcon = {
                     FilledTonalIconButton(
                         onClick = {
-                            println("Button is disabled")
+                            onBack()
                         }
                     ) {
                         Icon(
@@ -91,7 +93,9 @@ fun ScreenFilledButton() {
 
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         }

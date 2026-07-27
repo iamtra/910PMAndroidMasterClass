@@ -35,7 +35,9 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenProgress() {
+fun ScreenProgress(
+    onBack: () -> Unit = {}
+) {
     val scope = rememberCoroutineScope()
     var currentProgress by remember { mutableFloatStateOf(0f) }
     Scaffold(
@@ -44,7 +46,9 @@ fun ScreenProgress() {
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            onBack()
+                        }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_menu_24),
@@ -68,7 +72,9 @@ fun ScreenProgress() {
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         },

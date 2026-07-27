@@ -54,7 +54,9 @@ import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenSlider() {
+fun ScreenSlider(
+    onBack: () -> Unit = {}
+) {
 
     var sliderPosition1 by remember { mutableFloatStateOf(0.0f) }
     var sliderPosition2 by remember { mutableFloatStateOf(30.0f) }
@@ -66,7 +68,9 @@ fun ScreenSlider() {
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            onBack()
+                        }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_menu_24),
@@ -90,7 +94,9 @@ fun ScreenSlider() {
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         },

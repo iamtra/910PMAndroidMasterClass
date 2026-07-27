@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.android.feature.home.home
+package kh.com.pheaktra.developer.basic.android.feature.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -25,6 +25,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -32,10 +33,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import kh.com.pheaktra.developer.basic.android.BuildConfig
 import kh.com.pheaktra.developer.basic.android.R
-import kh.com.pheaktra.developer.basic.android.feature.home.HomeVM
 import kh.com.pheaktra.developer.basic.android.model.base.BaseUiState
 import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 import kh.com.pheaktra.developer.basic.android.util.LoadingUtil
+import kh.com.pheaktra.developer.basic.android.util.SystemBarController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -69,31 +70,39 @@ fun ScreenHome(
         }
     }
 
+    SystemBarController(
+        useDarkStatusBarIcons = false,
+        useDarkNavigationBarIcons = false
+    )
+
     Scaffold(
         topBar = {
             TopAppBar(
                 navigationIcon = {
                     IconButton(
+                        modifier = Modifier.size(48.dp),
                         onClick = {
                             onClickProfile(1)
                         }
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.ic_profile),
+                            painter = painterResource(R.drawable.ic_light),
                             contentDescription = null
                         )
                     }
                 },
                 title = {
                     Text(
-                        text = "My App"
+                        text = stringResource(R.string.name)
                     )
                 },
                 actions = {
 
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         }

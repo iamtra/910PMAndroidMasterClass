@@ -31,7 +31,7 @@ import kh.com.pheaktra.developer.basic.android.feature.chips.ScreenChips
 import kh.com.pheaktra.developer.basic.android.feature.datepicker.ScreenDatePicker
 import kh.com.pheaktra.developer.basic.android.feature.dialog.ScreenDialog
 import kh.com.pheaktra.developer.basic.android.feature.filledbutton.ScreenFilledButton
-import kh.com.pheaktra.developer.basic.android.feature.home.home.ScreenHome
+import kh.com.pheaktra.developer.basic.android.feature.home.ScreenHome
 import kh.com.pheaktra.developer.basic.android.feature.iconbuttons.ScreenIconButtons
 import kh.com.pheaktra.developer.basic.android.feature.internetconnection.ScreenInternetConnection
 import kh.com.pheaktra.developer.basic.android.feature.loading_progress.ScreenScreenLoadingAndProgress
@@ -116,7 +116,7 @@ fun Navigation(route: String?) {
 
             entry<UserApiScreen> {
                 ScreenUserApi(
-                    onPressBack = {
+                    onBack = {
                         onBack()
                     }
                 )
@@ -144,67 +144,131 @@ fun Navigation(route: String?) {
             }
 
             entry<MenuScreen> {
-                ScreenMenu()
+                ScreenMenu(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<TabsScreen> {
-                ScreenTabs()
+                ScreenTabs(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<CardsScreen> {
-                ScreenCards()
+                ScreenCards(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<ChipsScreen> {
-                ScreenChips()
+                ScreenChips(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<DialogScreen> {
-                ScreenDialog()
+                ScreenDialog(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<SliderScreen> {
-                ScreenSlider()
+                ScreenSlider(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<SwitchScreen> {
-                ScreenSwitch()
+                ScreenSwitch(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<ToolbarScreen> {
-                ScreenToolbar()
+                ScreenToolbar(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<CheckBoxScreen> {
-                ScreenCheckBox()
+                ScreenCheckBox(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<ProgressScreen> {
-                ScreenProgress()
+                ScreenProgress(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<SnackbarScreen> {
-                ScreenSnackbar()
+                ScreenSnackbar(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<ToolTipsScreen> {
-                ScreenToolTips()
+                ScreenToolTips(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<TextFieldScreen> {
-                ScreenTextField()
+                ScreenTextField(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<TopAppBarScreen> {
-                ScreenTopAppBar()
+                ScreenTopAppBar(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<DatePickerScreen> {
-                ScreenDatePicker()
+                ScreenDatePicker(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<TimePickerScreen> {
-                ScreenTimePicker()
+                ScreenTimePicker(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<BottomSheetScreen> {
@@ -216,7 +280,11 @@ fun Navigation(route: String?) {
             }
 
             entry<IconButtonsScreen> {
-                ScreenIconButtons()
+                ScreenIconButtons(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<RadioButtonScreen> {
@@ -228,31 +296,59 @@ fun Navigation(route: String?) {
             }
 
             entry<FilledButtonScreen> {
-                ScreenFilledButton()
+                ScreenFilledButton(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<NavigationBarScreen> {
-                ScreenNavigationBar()
+                ScreenNavigationBar(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<NavigationDrawerScreen> {
-                ScreenNavigationDrawer()
+                ScreenNavigationDrawer(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<LoadingAndProgressScreen> {
-                ScreenScreenLoadingAndProgress()
+                ScreenScreenLoadingAndProgress(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<SingleChoiceSegmentedButtonScreen> {
-                ScreenSingleChoiceSegmentedButton()
+                ScreenSingleChoiceSegmentedButton(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<HorizontalMultiBrowseCarouselScreen> {
-                ScreenHorizontalMultiBrowseCarousel()
+                ScreenHorizontalMultiBrowseCarousel(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<MultiChoiceSegmentedButtonRowScreen> {
-                ScreenMultiChoiceSegmentedButtonRow()
+                ScreenMultiChoiceSegmentedButtonRow(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<NotificationPermissionScreen> {
@@ -273,11 +369,19 @@ fun Navigation(route: String?) {
             }
 
             entry<AccessPhotoScreen> {
-                ScreenAccessPhoto()
+                ScreenAccessPhoto(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<AccessPhotoMultipleScreen> {
-                ScreenAccessMultiplePhoto()
+                ScreenAccessMultiplePhoto(
+                    onBack = {
+                        onBack()
+                    }
+                )
             }
 
             entry<SelectSinglePhots> {

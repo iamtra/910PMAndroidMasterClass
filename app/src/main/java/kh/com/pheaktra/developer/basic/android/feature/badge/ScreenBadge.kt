@@ -133,10 +133,9 @@ fun ScreenBadge(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-//                    navigationIconContentColor = MaterialTheme.colorScheme.error,
-//                    actionIconContentColor = MaterialTheme.colorScheme.error,
-//                    titleContentColor = MaterialTheme.colorScheme.error
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         },

@@ -37,7 +37,9 @@ import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenSwitch() {
+fun ScreenSwitch(
+    onBack: () -> Unit = {}
+) {
     var checked by remember { mutableStateOf(false) }
 
     Scaffold(
@@ -46,7 +48,9 @@ fun ScreenSwitch() {
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            onBack()
+                        }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_menu_24),
@@ -70,7 +74,9 @@ fun ScreenSwitch() {
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         },

@@ -38,7 +38,9 @@ import org.jspecify.annotations.NullUnmarked
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenTopAppBar() {
+fun ScreenTopAppBar(
+    onBack: () -> Unit = {}
+) {
 
     val isDialogOpen = remember { mutableStateOf(false) }
 
@@ -104,7 +106,7 @@ fun ScreenTopAppBar() {
                 navigationIcon = {
                     IconButton(
                         onClick = {
-                            isDialogOpen.value = true
+                            onBack()
                         }
                     ) {
                         Icon(
@@ -143,10 +145,9 @@ fun ScreenTopAppBar() {
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    navigationIconContentColor = MaterialTheme.colorScheme.error,
-                    actionIconContentColor = MaterialTheme.colorScheme.error,
-                    titleContentColor = MaterialTheme.colorScheme.error
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         }

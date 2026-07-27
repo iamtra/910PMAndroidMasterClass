@@ -41,7 +41,9 @@ import kh.com.pheaktra.developer.basic.android.ui.theme.BaseTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenAccessMultiplePhoto() {
+fun ScreenAccessMultiplePhoto(
+    onBack: () -> Unit = {}
+) {
 
     var listUri by remember { mutableStateOf<List<Uri>?>(null) }
     val scrollState = rememberScrollState()
@@ -63,7 +65,9 @@ fun ScreenAccessMultiplePhoto() {
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            onBack()
+                        }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_menu_24),
@@ -87,7 +91,9 @@ fun ScreenAccessMultiplePhoto() {
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         },

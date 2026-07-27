@@ -44,7 +44,9 @@ import kh.com.pheaktra.developer.basic.android.model.base.foodList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenLazyVerticalGrid() {
+fun ScreenLazyVerticalGrid(
+    onBack: () -> Unit = {}
+) {
     val foods = foodList
     Scaffold(
         modifier = Modifier
@@ -58,7 +60,7 @@ fun ScreenLazyVerticalGrid() {
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = { onBack() }) {
                         Icon(
                             painter = painterResource(R.drawable.ic_adb_24),
                             contentDescription = "Localized description"
@@ -79,11 +81,10 @@ fun ScreenLazyVerticalGrid() {
                         )
                     }
                 },
-                colors = TopAppBarDefaults.largeTopAppBarColors(
+                colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
-                    actionIconContentColor = Color.White,
-                    navigationIconContentColor = Color.White,
-                    titleContentColor = Color.White
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         },
